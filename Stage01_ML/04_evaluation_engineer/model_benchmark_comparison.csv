@@ -1,0 +1,5 @@
+Model,Category,Accuracy,Macro_Precision,Macro_Recall,Macro_F1,Train_Time_Sec,Inference_Latency_ms,Critical_Delay_Recall
+Random Forest,Supervised (Bagging),0.8479,0.7793,0.7882,0.7737,0.18,0.028,0.9011
+XGBoost (Champion),Supervised (Boosting),0.8479,0.7818,0.7861,0.7726,0.3,0.002,0.9011
+Isolation Forest,Unsupervised Anomaly,0.9604,,,,0.12,0.052,0.2527
+One-Class SVM,Semi-Supervised Novelty,0.8135,,,,0.01,0.068,0.9341

@@ -1,0 +1,8 @@
+check,issue_count
+negative_dwell,0
+negative_throughput,0
+negative_customs_hold,0
+capacity_outside_0_100,217
+equipment_outside_0_100,0
+labor_ratio_outside_0_1,0
+historical_delay_rate_outside_0_1,0

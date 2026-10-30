@@ -1,0 +1,30 @@
+column,check,issue_count,details
+all_columns,exact_duplicate_rows,0,Exact duplicate records removed.
+timestamp,invalid_timestamp,0,Non-empty values that could not be parsed.
+timestamp,missing_timestamp,0,Missing or unparseable timestamps.
+dwell_time_hours,invalid_numeric,0,Non-empty values that could not be converted.
+dwell_time_hours,missing_after_conversion,0,Review missing values during EDA.
+throughput_teu_per_hr,invalid_numeric,0,Non-empty values that could not be converted.
+throughput_teu_per_hr,missing_after_conversion,0,Review missing values during EDA.
+capacity_utilization_pct,invalid_numeric,0,Non-empty values that could not be converted.
+capacity_utilization_pct,missing_after_conversion,0,Review missing values during EDA.
+customs_hold_hours,invalid_numeric,0,Non-empty values that could not be converted.
+customs_hold_hours,missing_after_conversion,0,Review missing values during EDA.
+weather_severity_index,invalid_numeric,0,Non-empty values that could not be converted.
+weather_severity_index,missing_after_conversion,0,Review missing values during EDA.
+labor_deficit_ratio,invalid_numeric,0,Non-empty values that could not be converted.
+labor_deficit_ratio,missing_after_conversion,0,Review missing values during EDA.
+equipment_availability_pct,invalid_numeric,0,Non-empty values that could not be converted.
+equipment_availability_pct,missing_after_conversion,0,Review missing values during EDA.
+historical_delay_rate,invalid_numeric,0,Non-empty values that could not be converted.
+historical_delay_rate,missing_after_conversion,0,Review missing values during EDA.
+dwell_time_hours,negative_value,0,Negative values flagged; records preserved.
+throughput_teu_per_hr,negative_value,0,Negative values flagged; records preserved.
+customs_hold_hours,negative_value,0,Negative values flagged; records preserved.
+weather_severity_index,negative_value,0,Negative values flagged; records preserved.
+capacity_utilization_pct,outside_percentage_range,217,Verify measurement definitions and source data.
+equipment_availability_pct,outside_percentage_range,0,Verify measurement definitions and source data.
+labor_deficit_ratio,outside_ratio_range,0,Verify that this field uses a 0-to-1 scale.
+historical_delay_rate,outside_ratio_range,0,Verify that this field uses a 0-to-1 scale.
+delay_status,invalid_target_label,0,"Expected ON_TIME, AT_RISK, or CRITICAL_DELAY."
+is_synthetic,invalid_boolean_value,0,Expected true/false or 1/0.

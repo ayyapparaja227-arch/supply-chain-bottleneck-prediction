@@ -1,60 +1,23 @@
-# AI-Powered Prediction of Global Supply Chain Logistics Bottlenecks
+# ML Stage — Supply Chain Logistics Control Tower
 
-Stage 1 starter repository for data validation, EDA, baseline ML, evaluation, and bottleneck-risk classification.
+**Purpose:** shipment delay-risk classification
 
-## Stage 1 goal
-Predict shipment delay risk and classify shipments as:
-- `On-Time`
-- `At-Risk`
-- `Critical Delay`
+This stage follows the five-role pattern in the supplied OncologyPrecisionMedicine_MiniDemo:
+1. `01_data_engineer.py`
+2. `02_eda_engineer.py`
+3. `03_ml_engineer.py`
+4. `04_evaluation_engineer.py`
+5. `05_integration_engineer.py`
 
-The initial implementation is a baseline scaffold. Do not report model scores until the team runs evaluation on the selected dataset.
-
-## Workflow
-1. **Data intake** — collect shipment/delay data and supporting port/weather data.
-2. **Data validation** — inspect schema, missingness, duplicates, target quality, and date/location coverage.
-3. **EDA** — examine delay distribution and relationships with weather, waiting/dwell time, traffic, and capacity/utilization.
-4. **Feature preparation** — define which features are available at prediction time; prevent target leakage.
-5. **Baseline model** — use a time-aware or stratified split as appropriate, then train Logistic Regression and Random Forest baselines.
-6. **Evaluation** — report precision, recall, F1, confusion matrix, and false-alarm rate. Agree on the acceptable false-alarm threshold with the team.
-7. **Interpretation** — report feature importance and limitations.
-8. **Risk output** — map model probabilities to the three risk categories only after thresholds are agreed and validated.
-9. **Ops field guide** — create a one-page explanation of what each risk category means and what an operator should do.
-
-## Repository layout
-```text
-data/
-  raw/                 # Original datasets (normally do not commit large/private files)
-  processed/           # Cleaned datasets (normally do not commit large files)
-notebooks/
-  01_eda.ipynb         # EDA notebook to create
-src/
-  data_validation.py
-  train_baseline.py
-  evaluate.py
-  risk_rules.py
-reports/
-  figures/
-  stage1_findings.md
-tests/
-requirements.txt
-.gitignore
-```
-
-## Dataset guidance
-Use one shipment-level dataset as the primary labelled dataset. Port dwell-time, port capacity/utilization, and historical weather sources can be supporting datasets. Do not merge them unless location and time keys are compatible and the join is defensible. If data are synthetic, label them as synthetic.
-
-## Run locally
+Run from this folder, in numeric order:
 ```bash
-python -m venv .venv
-# macOS/Linux
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python src/data_validation.py --input data/raw/your_shipment_file.csv
+python 01_data_engineer.py
+python 02_eda_engineer.py
+python 03_ml_engineer.py
+python 04_evaluation_engineer.py
+python 05_integration_engineer.py
 ```
 
-## Team collaboration
-- Create issues for dataset selection, EDA, modelling, evaluation, and documentation.
-- Use branches such as `feat/data-validation`, `feat/eda`, `feat/baseline-model`.
-- Open pull requests instead of everyone pushing directly to `main`.
-- Never commit API keys, credentials, or sensitive data.
+Install the common dependencies: `pip install pandas numpy scikit-learn matplotlib joblib`.
+
+The sample telemetry is synthetic/demo data, not live port data. This educational mini demo is not connected to live logistics systems.

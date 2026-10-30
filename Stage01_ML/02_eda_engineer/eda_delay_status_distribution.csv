@@ -1,0 +1,4 @@
+Delay_Status,Count,Percentage
+ON_TIME,3468,72.25
+AT_RISK,745,15.52
+CRITICAL_DELAY,587,12.23

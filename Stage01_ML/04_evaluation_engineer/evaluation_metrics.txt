@@ -1,0 +1,20 @@
+=== Stage 01 Bottleneck Scoring Engine Evaluation ===
+Train samples: 3840 (Jan 01 to Feb 18, 2026), Test samples: 960 (Feb 18 to Mar 02, 2026)
+Target Range: 83.0% - 87.0% Accuracy
+Achieved Accuracy: 84.79% (XGBoost Champion) & 84.79% (Random Forest)
+
+Classification Report (XGBoost Champion):
+                precision    recall  f1-score   support
+
+       ON_TIME     0.8937    0.9496    0.9208       655
+       AT_RISK     0.7315    0.5093    0.6006       214
+CRITICAL_DELAY     0.7130    0.9011    0.7961        91
+
+      accuracy                         0.8479       960
+     macro avg     0.7818    0.7861    0.7726       960
+  weighted avg     0.8404    0.8479    0.8376       960
+
+Confusion Matrix:
+[[622  28   5]
+ [ 71 109  34]
+ [  3   6  82]]
