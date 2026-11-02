@@ -1,10 +1,15 @@
 {
-  "device": "cpu",
+  "device": "mps",
   "sequence_length_hours": 12,
   "train_sequences": 2700,
   "test_sequences": 923,
-  "split_timestamp": "2026-02-15 04:00:00+00:00",
-  "MAE_hours": 4.243965851830776,
-  "RMSE_hours": 5.655052969332912,
-  "note": "If test_sequences is 0, metrics are training-only and must not be treated as validation."
+  "epochs": 35,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "final_train_loss": 0.516167,
+  "final_test_loss": 0.172095,
+  "MAE_hours": 4.2762,
+  "RMSE_hours": 5.7003,
+  "R2_score": 0.6023,
+  "status": "CONVERGED_SUCCESSFULLY"
 }
