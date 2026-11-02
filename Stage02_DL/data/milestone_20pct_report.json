@@ -1,0 +1,64 @@
+{
+  "milestone": "20% Complete",
+  "phase": "Role 01: Hourly Node Telemetry Aggregation",
+  "input_records": 4800,
+  "cleansed_records": 4800,
+  "hourly_sequence_steps": 3695,
+  "signals_aggregated": [
+    "dwell_time_hours",
+    "throughput_teu_per_hr",
+    "capacity_utilization_pct",
+    "customs_hold_hours",
+    "weather_severity_index",
+    "labor_deficit_ratio",
+    "equipment_availability_pct",
+    "historical_delay_rate"
+  ],
+  "nodes_resampled": {
+    "DC_US_MW_JOLIET": {
+      "hourly_steps": 367,
+      "mean_dwell_hours": 8.42,
+      "peak_dwell_hours": 19.13,
+      "mean_capacity_pct": 58.2
+    },
+    "PORT_CN_SHA": {
+      "hourly_steps": 402,
+      "mean_dwell_hours": 17.79,
+      "peak_dwell_hours": 28.89,
+      "mean_capacity_pct": 68.3
+    },
+    "PORT_US_LAX": {
+      "hourly_steps": 981,
+      "mean_dwell_hours": 31.19,
+      "peak_dwell_hours": 82.02,
+      "mean_capacity_pct": 80.2
+    },
+    "PORT_US_LGB": {
+      "hourly_steps": 861,
+      "mean_dwell_hours": 23.85,
+      "peak_dwell_hours": 93.98,
+      "mean_capacity_pct": 72.7
+    },
+    "PORT_US_OAK": {
+      "hourly_steps": 606,
+      "mean_dwell_hours": 19.09,
+      "peak_dwell_hours": 29.46,
+      "mean_capacity_pct": 62.1
+    },
+    "RAIL_US_CHI_BNSF": {
+      "hourly_steps": 478,
+      "mean_dwell_hours": 18.64,
+      "peak_dwell_hours": 59.89,
+      "mean_capacity_pct": 68.8
+    }
+  },
+  "time_horizon": {
+    "start": "2026-01-01 00:00:00+00:00",
+    "end": "2026-03-02 00:00:00+00:00"
+  },
+  "artifacts_generated": [
+    "prepared_dataset.csv",
+    "hourly_node_telemetry.csv"
+  ],
+  "status": "APPROVED \u2014 READY FOR 30% MILESTONE (ROLE 01: GRAPH ADJACENCY & EDGES)"
+}
