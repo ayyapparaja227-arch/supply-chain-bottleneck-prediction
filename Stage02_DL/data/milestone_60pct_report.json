@@ -1,0 +1,85 @@
+{
+  "milestone": "60% Complete",
+  "phase": "Role 03: DL Engineer \u2014 PyTorch Architecture Specification",
+  "model_architecture": {
+    "name": "LSTMForecaster",
+    "sequence_length": 12,
+    "input_features": 8,
+    "hidden_units": 32,
+    "num_layers": 1,
+    "dense_head": [
+      {
+        "layer": "Linear",
+        "in_features": 32,
+        "out_features": 16
+      },
+      {
+        "layer": "ReLU"
+      },
+      {
+        "layer": "Linear",
+        "in_features": 16,
+        "out_features": 1
+      }
+    ],
+    "total_trainable_parameters": 5921
+  },
+  "layer_parameters": {
+    "lstm.weight_ih_l0": {
+      "shape": [
+        128,
+        8
+      ],
+      "parameters": 1024
+    },
+    "lstm.weight_hh_l0": {
+      "shape": [
+        128,
+        32
+      ],
+      "parameters": 4096
+    },
+    "lstm.bias_ih_l0": {
+      "shape": [
+        128
+      ],
+      "parameters": 128
+    },
+    "lstm.bias_hh_l0": {
+      "shape": [
+        128
+      ],
+      "parameters": 128
+    },
+    "head.0.weight": {
+      "shape": [
+        16,
+        32
+      ],
+      "parameters": 512
+    },
+    "head.0.bias": {
+      "shape": [
+        16
+      ],
+      "parameters": 16
+    },
+    "head.2.weight": {
+      "shape": [
+        1,
+        16
+      ],
+      "parameters": 16
+    },
+    "head.2.bias": {
+      "shape": [
+        1
+      ],
+      "parameters": 1
+    },
+    "total_trainable_parameters": 5921
+  },
+  "input_contract": "(Batch, 12, 8)",
+  "output_contract": "(Batch,)",
+  "status": "VERIFIED_READY_FOR_TRAINING"
+}
