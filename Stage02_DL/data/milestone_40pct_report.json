@@ -1,0 +1,64 @@
+{
+  "milestone": "40% Complete",
+  "phase": "Role 01: Sliding Window Sequence Datasets",
+  "sequence_length_hours": 12,
+  "feature_count": 8,
+  "features": [
+    "dwell_time_hours",
+    "throughput_teu_per_hr",
+    "capacity_utilization_pct",
+    "customs_hold_hours",
+    "weather_severity_index",
+    "labor_deficit_ratio",
+    "equipment_availability_pct",
+    "historical_delay_rate"
+  ],
+  "train_cutoff_timestamp": "2026-02-15 04:00:00+00:00",
+  "train_dataset": {
+    "window_count": 2700,
+    "tensor_shape": [
+      2700,
+      12,
+      8
+    ],
+    "dwell_target_shape": [
+      2700
+    ]
+  },
+  "test_dataset": {
+    "window_count": 923,
+    "tensor_shape": [
+      923,
+      12,
+      8
+    ],
+    "dwell_target_shape": [
+      923
+    ]
+  },
+  "scaler": {
+    "scaler_type": "StandardScaler",
+    "fit_split": "train_only",
+    "means": {
+      "dwell_time_hours": 22.707842532467534,
+      "throughput_teu_per_hr": 219.65567971380472,
+      "capacity_utilization_pct": 70.59695436507937,
+      "customs_hold_hours": 3.805405603655603,
+      "weather_severity_index": 1.6183715127465128,
+      "labor_deficit_ratio": 0.0712814454064454,
+      "equipment_availability_pct": 89.57558032708032,
+      "historical_delay_rate": 0.15313083213083212
+    },
+    "scales": {
+      "dwell_time_hours": 13.740911116533557,
+      "throughput_teu_per_hr": 68.05945245378015,
+      "capacity_utilization_pct": 12.098639501691043,
+      "customs_hold_hours": 6.615437571004662,
+      "weather_severity_index": 1.7602912878967827,
+      "labor_deficit_ratio": 0.1479893157278183,
+      "equipment_availability_pct": 9.042148420365443,
+      "historical_delay_rate": 0.03307782668196996
+    }
+  },
+  "status": "VERIFIED_READY_FOR_EDA_AND_MODELING"
+}
