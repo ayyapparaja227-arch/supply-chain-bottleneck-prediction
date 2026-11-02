@@ -322,7 +322,7 @@ st.markdown("""
         border-radius: 0 14px 14px 0;
     }
 
-    /* Fix Dropdown Popovers (Image 2 Fix - Never Black) */
+    /* Fix Dropdown Popovers (Never Black) */
     div[data-baseweb="popover"],
     div[data-baseweb="menu"],
     ul[role="listbox"],
@@ -727,39 +727,22 @@ with tab_triage:
             </div>
             """, unsafe_allow_html=True)
 
-        # Telemetry Risk Drivers Table (HTML Escaped to prevent DOM corruption)
+        # Telemetry Risk Drivers Table (Built cleanly without indented multiline whitespace)
         st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-top:14px; margin-bottom:4px;'>🔍 Key Telemetry Drivers</h4>", unsafe_allow_html=True)
         drivers = [
-            ("Container Dwell Time", f"{dwell:.1f} hrs", "&lt; 24 hrs", "🔴 Critical" if dwell > 35 else ("🟡 Elevated" if dwell > 24 else "🟢 Normal")),
-            ("Yard Saturation", f"{capacity:.1f}%", "&lt; 80%", "🔴 Overflow" if capacity > 100 else ("🟡 High" if capacity > 80 else "🟢 Optimal")),
-            ("Customs Hold", f"{customs:.1f} hrs", "&lt; 4 hrs", "🔴 Backlogged" if customs > 8 else ("🟡 Queued" if customs > 4 else "🟢 Cleared")),
-            ("Berth Crane Velocity", f"{throughput:.0f} TEU/h", "&gt; 180 TEU/h", "🔴 Choked" if throughput < 120 else ("🟡 Moderate" if throughput < 180 else "🟢 Swift")),
-            ("Weather Severity", f"{weather:.1f} / 10", "&lt; 3.0", "🔴 Severe Gale" if weather > 4.5 else ("🟡 Adverse" if weather > 2.5 else "🟢 Calm"))
+            ("Container Dwell Time", f"{dwell:.1f} hrs", "< 24 hrs", "🔴 Critical" if dwell > 35 else ("🟡 Elevated" if dwell > 24 else "🟢 Normal")),
+            ("Yard Saturation", f"{capacity:.1f}%", "< 80%", "🔴 Overflow" if capacity > 100 else ("🟡 High" if capacity > 80 else "🟢 Optimal")),
+            ("Customs Hold", f"{customs:.1f} hrs", "< 4 hrs", "🔴 Backlogged" if customs > 8 else ("🟡 Queued" if customs > 4 else "🟢 Cleared")),
+            ("Berth Crane Velocity", f"{throughput:.0f} TEU/h", "> 180 TEU/h", "🔴 Choked" if throughput < 120 else ("🟡 Moderate" if throughput < 180 else "🟢 Swift")),
+            ("Weather Severity", f"{weather:.1f} / 10", "< 3.0", "🔴 Severe Gale" if weather > 4.5 else ("🟡 Adverse" if weather > 2.5 else "🟢 Calm"))
         ]
         
-        table_html = """
-        <div class="table-tray">
-        <table class="clay-table">
-            <thead>
-                <tr>
-                    <th>Telemetry Channel</th>
-                    <th>Observed</th>
-                    <th>Safe Range</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-        """
+        table_rows = []
         for factor, obs, bench, status in drivers:
-            table_html += f"""
-                <tr>
-                    <td><strong>{factor}</strong></td>
-                    <td>{obs}</td>
-                    <td style="color:#48404b;">{bench}</td>
-                    <td>{status}</td>
-                </tr>
-            """
-        table_html += "</tbody></table></div>"
+            bench_clean = bench.replace("<", "&lt;").replace(">", "&gt;")
+            table_rows.append(f'<tr><td><strong>{factor}</strong></td><td>{obs}</td><td style="color:#48404b;">{bench_clean}</td><td>{status}</td></tr>')
+        
+        table_html = f'<div class="table-tray"><table class="clay-table"><thead><tr><th>Telemetry Channel</th><th>Observed</th><th>Safe Range</th><th>Status</th></tr></thead><tbody>{"".join(table_rows)}</tbody></table></div>'
         st.markdown(table_html, unsafe_allow_html=True)
 
     with col_t2:
@@ -795,7 +778,7 @@ with tab_triage:
             plot_bgcolor="rgba(0,0,0,0)",
             font=dict(family="Instrument Sans", color="#383139")
         )
-        st.plotly_chart(gauge_fig, use_container_width=True)
+        st.plotly_chart(gauge_fig, use_container_width=True, config={'displayModeBar': False})
 
         # VISUALIZATION 2: Claymorphic Probability Donut Chart
         st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-top:8px; margin-bottom:2px;'>📊 Calibrated Probability Share</h4>", unsafe_allow_html=True)
@@ -818,10 +801,10 @@ with tab_triage:
             margin=dict(l=10, r=10, t=10, b=10),
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5, font=dict(size=12, color="#383139", family="Instrument Sans")),
+            legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5, font=dict(size=11, color="#383139", family="Instrument Sans")),
             annotations=[dict(text=f"{pred_label.replace('_', ' ')}<br><span style='font-size:20px; font-weight:800; color:#383139;'>{confidence_pct}%</span>", x=0.5, y=0.5, font_size=12, font_family="Instrument Sans", showarrow=False)]
         )
-        st.plotly_chart(donut_fig, use_container_width=True)
+        st.plotly_chart(donut_fig, use_container_width=True, config={'displayModeBar': False})
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -831,7 +814,7 @@ with tab_visuals:
     col_v1, col_v2 = st.columns(2, gap="large")
     
     with col_v1:
-        # VISUALIZATION 3: 6-Axis Telemetry Health Radar (Plotly Bug Fixed)
+        # VISUALIZATION 3: 6-Axis Telemetry Health Radar (Clean Top Legend & No Modebar)
         st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139;'>🕸️ 6-Axis Telemetry Health Footprint</h4>", unsafe_allow_html=True)
         st.caption("Molded polygon comparison showing current shipment metrics against optimal baseline envelopes.")
         
@@ -859,7 +842,7 @@ with tab_visuals:
             fill='toself',
             fillcolor='rgba(222, 208, 249, 0.45)',
             line=dict(color='#b59fe0', dash='dash', width=2),
-            name='Optimal Envelope'
+            name='Optimal Baseline'
         ))
         
         # Current Observation (Pink Molded Area)
@@ -878,16 +861,23 @@ with tab_visuals:
                 angularaxis=dict(color="#383139", gridcolor="#e2e8f0", tickfont=dict(family="Instrument Sans", size=11, color="#383139"))
             ),
             showlegend=True,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5, font=dict(family="Instrument Sans", color="#383139")),
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1.0,
+                font=dict(family="Instrument Sans", size=11, color="#383139")
+            ),
             height=340,
-            margin=dict(l=35, r=35, t=20, b=20),
+            margin=dict(l=35, r=35, t=35, b=25),
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)"
         )
-        st.plotly_chart(radar_fig, use_container_width=True)
+        st.plotly_chart(radar_fig, use_container_width=True, config={'displayModeBar': False})
 
     with col_v2:
-        # VISUALIZATION 4: What-If Sensitivity Simulator
+        # VISUALIZATION 4: What-If Sensitivity Simulator (Top Legend & Ample Bottom Axis Padding)
         st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139;'>📈 What-If Sensitivity Simulator</h4>", unsafe_allow_html=True)
         st.caption("Simulates delay probability shift as Container Dwell Time climbs from 5h to 65h.")
         
@@ -930,22 +920,29 @@ with tab_visuals:
         curve_fig.add_vline(
             x=dwell, line_width=2.5, line_dash="dash", line_color="#383139",
             annotation_text=f"Current: {dwell:.1f}h", annotation_position="top left",
-            annotation_font=dict(color="#383139", size=12, family="Instrument Sans")
+            annotation_font=dict(color="#383139", size=11, family="Instrument Sans")
         )
 
         curve_fig.update_layout(
             xaxis_title="Dwell Time (Hours)",
             yaxis_title="Probability (%)",
-            yaxis=dict(range=[0, 105], gridcolor="#f1f2fa", color="#48404b"),
-            xaxis=dict(gridcolor="#f1f2fa", color="#48404b"),
+            yaxis=dict(range=[0, 105], gridcolor="#f1f2fa", color="#48404b", title_font=dict(family="Instrument Sans", size=12)),
+            xaxis=dict(gridcolor="#f1f2fa", color="#48404b", title_font=dict(family="Instrument Sans", size=12)),
             height=340,
-            margin=dict(l=30, r=20, t=20, b=20),
+            margin=dict(l=35, r=20, t=35, b=45),
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             font=dict(family="Instrument Sans", color="#383139"),
-            legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5, font=dict(family="Instrument Sans", color="#383139"))
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1.0,
+                font=dict(family="Instrument Sans", size=11, color="#383139")
+            )
         )
-        st.plotly_chart(curve_fig, use_container_width=True)
+        st.plotly_chart(curve_fig, use_container_width=True, config={'displayModeBar': False})
 
     st.markdown('</div>', unsafe_allow_html=True)
 
