@@ -1,0 +1,10 @@
+{
+  "device": "cpu",
+  "sequence_length_hours": 12,
+  "train_sequences": 2700,
+  "test_sequences": 923,
+  "split_timestamp": "2026-02-15 04:00:00+00:00",
+  "MAE_hours": 4.243965851830776,
+  "RMSE_hours": 5.655052969332912,
+  "note": "If test_sequences is 0, metrics are training-only and must not be treated as validation."
+}

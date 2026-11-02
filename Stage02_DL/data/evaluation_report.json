@@ -1,0 +1,11 @@
+{
+  "n_evaluated": 923,
+  "MAE_hours": 4.243965851830776,
+  "RMSE_hours": 5.655052969332912,
+  "R2": 0.6086365738750675,
+  "limitations": [
+    "Forecast target is the next hourly observation, not seven days ahead.",
+    "Rows are synthetic/demo telemetry; performance is not evidence of real-world readiness.",
+    "A persistence baseline and rolling-origin backtest should be added before operational use."
+  ]
+}
