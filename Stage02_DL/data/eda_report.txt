@@ -1,39 +1,36 @@
-Rows=4800; columns=18
+============================================================
+SUPPLY CHAIN TELEMETRY EXPLORATORY DATA ANALYSIS (STAGE 02 DL)
+============================================================
+Row count: 4,800 rows | Columns: 18
+Observation window: 2026-01-01 00:43:47+00:00 to 2026-03-02 00:18:29+00:00
 
-Time range=2026-01-01 00:43:47+00:00 to 2026-03-02 00:18:29+00:00
+Top Feature Correlations with Dwell Time (Hours):
+  • capacity_utilization_pct      : +0.7857
+  • labor_deficit_ratio           : +0.7122
+  • weather_severity_index        : +0.6810
+  • customs_hold_hours            : +0.6116
+  • historical_delay_rate         : +0.0210
+  • throughput_teu_per_hr         : -0.2167
+  • equipment_availability_pct    : -0.6475
 
-Missing values:
-timestamp                     0
-shipment_id                   0
-container_id                  0
-carrier_code                  0
-origin_port                   0
-destination_port              0
-current_node_id               0
-dwell_time_hours              0
-throughput_teu_per_hr         0
-capacity_utilization_pct      0
-customs_hold_hours            0
-weather_severity_index        0
-labor_deficit_ratio           0
-equipment_availability_pct    0
-historical_delay_rate         0
-priority_tier                 0
-delay_status                  0
-is_synthetic                  0
+Dwell Time Lag Autocorrelation (1h to 12h):
+  • lag_1h: +0.4145
+  • lag_2h: +0.4248
+  • lag_3h: +0.4242
+  • lag_4h: +0.3797
+  • lag_5h: +0.3965
+  • lag_6h: +0.4043
+  • lag_7h: +0.3782
+  • lag_8h: +0.3794
+  • lag_9h: +0.3856
+  • lag_10h: +0.3616
+  • lag_11h: +0.3763
+  • lag_12h: +0.3675
 
-Duplicate rows=0
-
-Range review dwell_time_hours: 0 suspicious rows
-
-Range review capacity_utilization_pct: 217 suspicious rows
-
-Range review equipment_availability_pct: 0 suspicious rows
-
-Range review labor_deficit_ratio: 0 suspicious rows
-
-Delay status counts:
-delay_status
-ON_TIME           3468
-AT_RISK            745
-CRITICAL_DELAY     587
+Node Dwell Waveform Summary:
+  • DC_US_MW_JOLIET     : Mean=8.42h, Std=3.13h, Peak=19.13h
+  • PORT_CN_SHA         : Mean=17.79h, Std=3.19h, Peak=28.89h
+  • PORT_US_LAX         : Mean=31.19h, Std=16.35h, Peak=82.02h
+  • PORT_US_LGB         : Mean=23.85h, Std=9.64h, Peak=93.98h
+  • PORT_US_OAK         : Mean=19.09h, Std=3.29h, Peak=29.46h
+  • RAIL_US_CHI_BNSF    : Mean=18.64h, Std=12.55h, Peak=59.89h

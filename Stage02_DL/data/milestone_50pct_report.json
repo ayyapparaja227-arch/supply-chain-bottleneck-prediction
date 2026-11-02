@@ -1,0 +1,81 @@
+{
+  "milestone": "50% Complete",
+  "phase": "Role 02: EDA Engineer \u2014 Waveform & Cascade Analysis",
+  "node_waveforms": {
+    "DC_US_MW_JOLIET": {
+      "mean_dwell": 8.42,
+      "std_dwell": 3.13,
+      "max_dwell": 19.13,
+      "step_count": 367
+    },
+    "PORT_CN_SHA": {
+      "mean_dwell": 17.79,
+      "std_dwell": 3.19,
+      "max_dwell": 28.89,
+      "step_count": 402
+    },
+    "PORT_US_LAX": {
+      "mean_dwell": 31.19,
+      "std_dwell": 16.35,
+      "max_dwell": 82.02,
+      "step_count": 981
+    },
+    "PORT_US_LGB": {
+      "mean_dwell": 23.85,
+      "std_dwell": 9.64,
+      "max_dwell": 93.98,
+      "step_count": 861
+    },
+    "PORT_US_OAK": {
+      "mean_dwell": 19.09,
+      "std_dwell": 3.29,
+      "max_dwell": 29.46,
+      "step_count": 606
+    },
+    "RAIL_US_CHI_BNSF": {
+      "mean_dwell": 18.64,
+      "std_dwell": 12.55,
+      "max_dwell": 59.89,
+      "step_count": 478
+    }
+  },
+  "dwell_correlations": {
+    "dwell_time_hours": 1.0,
+    "capacity_utilization_pct": 0.7857,
+    "labor_deficit_ratio": 0.7122,
+    "weather_severity_index": 0.681,
+    "customs_hold_hours": 0.6116,
+    "historical_delay_rate": 0.021,
+    "throughput_teu_per_hr": -0.2167,
+    "equipment_availability_pct": -0.6475
+  },
+  "lag_autocorrelation_1_to_12h": {
+    "lag_1h": 0.4145,
+    "lag_2h": 0.4248,
+    "lag_3h": 0.4242,
+    "lag_4h": 0.3797,
+    "lag_5h": 0.3965,
+    "lag_6h": 0.4043,
+    "lag_7h": 0.3782,
+    "lag_8h": 0.3794,
+    "lag_9h": 0.3856,
+    "lag_10h": 0.3616,
+    "lag_11h": 0.3763,
+    "lag_12h": 0.3675
+  },
+  "key_findings": {
+    "highest_congestion_node": "PORT_US_LAX",
+    "lowest_congestion_node": "DC_US_MW_JOLIET",
+    "lag_1_persistence": 0.4145,
+    "lag_12_persistence": 0.3675
+  },
+  "artifacts_generated": [
+    "data/eda_dwell_trends.png",
+    "data/eda_delay_status.png",
+    "data/eda_hourly_trends.csv",
+    "data/eda_numeric_summary.csv",
+    "data/eda_correlations.csv",
+    "data/eda_report.txt"
+  ],
+  "status": "VERIFIED_READY_FOR_MODEL_TRAINING"
+}
