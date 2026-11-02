@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Global Supply Chain Logistics Bottleneck Predictor
-Modern White & Royal Blue UI/UX with Rich Plotly Visualizations
+Claymorphism Design System Edition
 Streamlit Operations Console (Stage 01)
 """
 
@@ -11,10 +11,9 @@ import pandas as pd
 import numpy as np
 import joblib
 import plotly.graph_objects as go
-import plotly.express as px
 
 # ---------------------------------------------------------------------
-# 1. PAGE CONFIGURATION & THEME STYLING (COOL WHITE WITH BLUE)
+# 1. PAGE CONFIGURATION & CLAYMORPHISM DESIGN SYSTEM
 # ---------------------------------------------------------------------
 st.set_page_config(
     page_title="Supply Chain Bottleneck Predictor",
@@ -23,130 +22,170 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Modern, Cool White & Blue UI/UX
+# Claymorphism Authoritative Tokens & CSS Injection
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-    
-    html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+        --dp-color-ground: #f1f2fa;
+        --dp-color-ink: #383139;
+        --dp-color-ink-secondary: #48404b;
+        --dp-color-accent: #f6a3ca;
+        --dp-color-surface-support: #c0efdc;
+        --dp-color-surface-compare: #ded0f9;
+        --dp-color-surface-warm: #f9e7a8;
+        --dp-color-surface-cool: #c5e5fb;
+        --dp-color-surface: #fffdf7;
+        --dp-typography-face: 'Instrument Sans', sans-serif;
     }
 
-    /* Crisp Light Background */
+    /* Page Background */
     .stApp {
-        background-color: #F8FAFC;
-        color: #0F172A;
+        background-color: var(--dp-color-ground) !important;
+        color: var(--dp-color-ink) !important;
+        font-family: var(--dp-typography-face) !important;
     }
-    
-    /* Clean Sidebar Styling */
-    section[data-testid="stSidebar"] {
-        background-color: #FFFFFF;
-        border-right: 1px solid #E2E8F0;
-        box-shadow: 2px 0 10px rgba(15, 23, 42, 0.02);
+
+    /* Text Resets */
+    h1, h2, h3, h4, h5, h6, p, span, div, label {
+        font-family: var(--dp-typography-face) !important;
+        color: var(--dp-color-ink);
     }
-    
-    /* Header Banner with Blue Gradient */
-    .header-banner {
-        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #0284C7 100%);
-        padding: 22px 28px;
-        border-radius: 16px;
-        color: #FFFFFF;
-        margin-bottom: 22px;
-        box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.25);
+
+    /* Claymorphism Hero Pink Cushion */
+    .clay-hero {
+        background-color: #f6a3ca;
+        border-radius: 40px;
+        padding: 32px 36px;
+        color: #383139;
+        margin-bottom: 24px;
+        box-shadow: 10px 10px 24px rgba(188, 155, 175, 0.45),
+                    -10px -10px 24px rgba(255, 255, 255, 0.95),
+                    inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+                    inset -4px -4px 8px rgba(190, 110, 150, 0.3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
     }
-    .header-banner h1 {
-        font-size: 26px;
+    .clay-hero h1 {
+        font-size: 30px;
         font-weight: 800;
         margin: 0;
+        color: #383139 !important;
         letter-spacing: -0.02em;
-        color: #FFFFFF !important;
+        line-height: 1.15;
     }
-    .header-banner p {
-        font-size: 14px;
-        color: #E0F2FE;
-        margin: 5px 0 0 0;
-        font-weight: 400;
+    .clay-hero p {
+        font-size: 15px;
+        color: #48404b !important;
+        margin: 8px 0 0 0;
+        line-height: 1.45;
+        max-width: 650px;
     }
-    .header-badge {
+    .clay-tag {
         display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(8px);
-        padding: 4px 12px;
-        border-radius: 9999px;
-        font-size: 11px;
-        font-weight: 600;
+        background-color: #fffdf7;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        margin-bottom: 8px;
+        color: #383139;
+        box-shadow: 4px 4px 10px rgba(188, 155, 175, 0.35),
+                    -4px -4px 10px rgba(255, 255, 255, 0.8),
+                    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 4px rgba(188, 155, 175, 0.2);
+        margin-bottom: 10px;
     }
 
-    /* KPI Summary Cards */
-    .kpi-card {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 14px;
-        padding: 16px 20px;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Clay Pastel Fact Cushions */
+    .clay-cushion {
+        border-radius: 30px;
+        padding: 18px 22px;
+        box-shadow: 8px 8px 18px rgba(175, 180, 200, 0.4),
+                    -8px -8px 18px rgba(255, 255, 255, 0.95),
+                    inset 3px 3px 6px rgba(255, 255, 255, 0.75),
+                    inset -3px -3px 6px rgba(170, 175, 195, 0.25);
+        margin-bottom: 18px;
+        transition: transform 0.18s ease;
     }
-    .kpi-card:hover {
+    .clay-cushion:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.08);
-        border-color: #BFDBFE;
     }
-    .kpi-label {
-        font-size: 11px;
-        font-weight: 600;
-        color: #64748B;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    .kpi-val {
-        font-size: 22px;
-        font-weight: 800;
-        color: #1E3A8A;
-        margin-top: 4px;
-    }
-    .kpi-val.green { color: #059669; }
-    .kpi-val.amber { color: #D97706; }
-    .kpi-val.red   { color: #DC2626; }
-    
-    /* Dynamic Prediction Status Banners */
-    .prediction-card-ontime {
-        background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
-        border: 2px solid #10B981;
-        border-radius: 14px;
-        padding: 20px 24px;
-        color: #065F46;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-    }
-    .prediction-card-atrisk {
-        background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-        border: 2px solid #F59E0B;
-        border-radius: 14px;
-        padding: 20px 24px;
-        color: #92400E;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
-    }
-    .prediction-card-critical {
-        background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
-        border: 2px solid #EF4444;
-        border-radius: 14px;
-        padding: 20px 24px;
-        color: #991B1B;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
-    }
-    .prediction-title {
+    .clay-cushion.mint { background-color: #c0efdc; }
+    .clay-cushion.cool { background-color: #c5e5fb; }
+    .clay-cushion.lavender { background-color: #ded0f9; }
+    .clay-cushion.warm { background-color: #f9e7a8; }
+    .clay-cushion.cream { background-color: #fffdf7; }
+    .clay-cushion.pink { background-color: #f6a3ca; }
+
+    .cushion-label {
         font-size: 12px;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 4px;
+        letter-spacing: 0.04em;
+        color: #48404b;
     }
-    .prediction-main-status {
+    .cushion-val {
+        font-size: 22px;
+        font-weight: 800;
+        color: #383139;
+        margin-top: 4px;
+        letter-spacing: -0.01em;
+    }
+
+    /* Shared Cream Tray Container */
+    .clay-tray {
+        background-color: #fffdf7;
+        border-radius: 42px;
+        padding: 28px 32px;
+        box-shadow: 12px 12px 28px rgba(180, 185, 205, 0.35),
+                    -12px -12px 28px rgba(255, 255, 255, 0.95),
+                    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
+                    inset -3px -3px 6px rgba(180, 185, 205, 0.2);
+        margin-bottom: 24px;
+    }
+
+    /* Result Pill Banners */
+    .prediction-clay-ontime {
+        background-color: #c0efdc;
+        border-radius: 32px;
+        padding: 22px 26px;
+        color: #244635;
+        box-shadow: 8px 8px 18px rgba(145, 195, 175, 0.45),
+                    -8px -8px 18px rgba(255, 255, 255, 0.95),
+                    inset 3px 3px 6px rgba(255, 255, 255, 0.8),
+                    inset -3px -3px 6px rgba(120, 175, 150, 0.3);
+        margin-bottom: 20px;
+    }
+    .prediction-clay-atrisk {
+        background-color: #f9e7a8;
+        border-radius: 32px;
+        padding: 22px 26px;
+        color: #4a3c10;
+        box-shadow: 8px 8px 18px rgba(210, 195, 135, 0.45),
+                    -8px -8px 18px rgba(255, 255, 255, 0.95),
+                    inset 3px 3px 6px rgba(255, 255, 255, 0.8),
+                    inset -3px -3px 6px rgba(195, 170, 100, 0.3);
+        margin-bottom: 20px;
+    }
+    .prediction-clay-critical {
+        background-color: #f6a3ca;
+        border-radius: 32px;
+        padding: 22px 26px;
+        color: #451c2d;
+        box-shadow: 8px 8px 18px rgba(205, 140, 170, 0.45),
+                    -8px -8px 18px rgba(255, 255, 255, 0.95),
+                    inset 3px 3px 6px rgba(255, 255, 255, 0.8),
+                    inset -3px -3px 6px rgba(190, 110, 140, 0.3);
+        margin-bottom: 20px;
+    }
+
+    .pred-badge-status {
         font-size: 28px;
         font-weight: 800;
         letter-spacing: -0.01em;
@@ -154,141 +193,193 @@ st.markdown("""
         align-items: center;
         gap: 10px;
     }
-    .prediction-confidence {
+    .pred-badge-meta {
         font-size: 14px;
         font-weight: 600;
-        opacity: 0.9;
         margin-top: 4px;
+        opacity: 0.95;
     }
 
-    /* Tactical Action Directive */
-    .directive-card {
-        background: #FFFFFF;
-        border-left: 5px solid #2563EB;
-        border-top: 1px solid #E2E8F0;
-        border-right: 1px solid #E2E8F0;
-        border-bottom: 1px solid #E2E8F0;
-        border-radius: 0 12px 12px 0;
-        padding: 16px 20px;
+    /* Tactical Action Pillow */
+    .tactical-pillow {
+        background-color: #ded0f9;
+        border-radius: 28px;
+        padding: 20px 24px;
+        color: #383139;
+        box-shadow: 6px 6px 14px rgba(185, 170, 215, 0.4),
+                    -6px -6px 14px rgba(255, 255, 255, 0.9),
+                    inset 3px 3px 6px rgba(255, 255, 255, 0.75),
+                    inset -3px -3px 6px rgba(175, 160, 205, 0.25);
         margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
-    .directive-card.critical {
-        border-left-color: #EF4444;
-        background: #FFFBFB;
-    }
-    .directive-card.warning {
-        border-left-color: #F59E0B;
-        background: #FFFDF9;
-    }
-    .directive-card.ontime {
-        border-left-color: #10B981;
-        background: #F9FDFB;
-    }
-    .directive-badge {
-        font-size: 11px;
-        font-weight: 700;
+    .tactical-title {
+        font-size: 12px;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #2563EB;
-        margin-bottom: 4px;
+        letter-spacing: 0.06em;
+        color: #4a366b;
+        margin-bottom: 6px;
     }
-    .directive-card.critical .directive-badge { color: #DC2626; }
-    .directive-card.warning .directive-badge { color: #D97706; }
-    .directive-card.ontime .directive-badge { color: #059669; }
-    .directive-text {
-        font-size: 13.5px;
-        font-weight: 600;
-        color: #1E293B;
+    .tactical-body {
+        font-size: 14px;
         line-height: 1.5;
+        color: #383139;
+        font-weight: 500;
     }
 
-    /* Corridor Progress Stepper */
-    .corridor-container {
+    /* Clay Corridor Stepper */
+    .clay-stepper {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        padding: 16px 20px;
-        margin-bottom: 22px;
-        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+        background-color: #fffdf7;
+        border-radius: 36px;
+        padding: 18px 26px;
+        margin-bottom: 24px;
+        box-shadow: 8px 8px 20px rgba(180, 185, 205, 0.3),
+                    -8px -8px 20px rgba(255, 255, 255, 0.9),
+                    inset 2px 2px 5px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 5px rgba(180, 185, 205, 0.2);
     }
-    .corridor-step {
+    .stepper-node {
         text-align: center;
         flex: 1;
     }
-    .corridor-dot {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #EFF6FF;
-        border: 2px solid #2563EB;
-        color: #2563EB;
-        font-size: 12px;
-        font-weight: 700;
+    .stepper-pill {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background-color: #c5e5fb;
+        color: #204b6b;
+        font-weight: 800;
+        font-size: 13px;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto 6px auto;
+        box-shadow: 3px 3px 8px rgba(150, 185, 215, 0.45),
+                    -3px -3px 8px rgba(255, 255, 255, 0.9),
+                    inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 3px rgba(150, 185, 215, 0.3);
     }
-    .corridor-dot.active {
-        background: #2563EB;
-        color: #FFFFFF;
+    .stepper-pill.alert {
+        background-color: #f6a3ca;
+        color: #451c2d;
+        box-shadow: 3px 3px 8px rgba(205, 140, 170, 0.45),
+                    -3px -3px 8px rgba(255, 255, 255, 0.9),
+                    inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 3px rgba(190, 110, 140, 0.3);
     }
-    .corridor-dot.alert {
-        background: #EF4444;
-        border-color: #DC2626;
-        color: #FFFFFF;
+    .stepper-pill.active {
+        background-color: #c0efdc;
+        color: #1b4231;
     }
-    .corridor-name {
-        font-size: 11px;
-        font-weight: 600;
-        color: #475569;
+    .stepper-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #48404b;
     }
-    .corridor-line {
+    .stepper-bar {
         flex: 1;
-        height: 3px;
-        background: #E2E8F0;
-        margin: 0 10px 20px 10px;
-    }
-    .corridor-line.active {
-        background: #93C5FD;
+        height: 6px;
+        background-color: #ded0f9;
+        border-radius: 999px;
+        margin: 0 12px 18px 12px;
+        box-shadow: inset 1px 1px 2px rgba(170, 155, 200, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.8);
     }
 
-    /* Tab Styling */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background-color: transparent;
-        padding-bottom: 4px;
+    /* Custom Table Styling for Drivers */
+    .clay-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        margin-top: 10px;
     }
-    .stTabs [data-baseweb="tab"] {
-        height: 42px;
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 10px;
-        padding: 0 20px;
+    .clay-table th {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #48404b;
+        padding: 6px 14px;
+        text-align: left;
+    }
+    .clay-table tr td {
+        background-color: #fffdf7;
+        padding: 10px 14px;
         font-size: 13px;
         font-weight: 600;
-        color: #64748B;
-        transition: all 0.2s ease;
+        color: #383139;
+        box-shadow: 4px 4px 10px rgba(185, 190, 210, 0.25),
+                    -4px -4px 10px rgba(255, 255, 255, 0.8),
+                    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 4px rgba(185, 190, 210, 0.15);
     }
-    .stTabs [data-baseweb="tab"]:hover {
-        color: #2563EB;
-        border-color: #BFDBFE;
+    .clay-table tr td:first-child {
+        border-radius: 16px 0 0 16px;
+    }
+    .clay-table tr td:last-child {
+        border-radius: 0 16px 16px 0;
+    }
+
+    /* Sidebar Overrides for Absolute Clarity & Legibility */
+    section[data-testid="stSidebar"] {
+        background-color: #e9ebf6 !important;
+        border-right: none !important;
+        box-shadow: 6px 0 20px rgba(165, 172, 195, 0.25) !important;
+    }
+    section[data-testid="stSidebar"] label {
+        color: #383139 !important;
+        font-weight: 700 !important;
+        font-size: 13px !important;
+        letter-spacing: 0.02em !important;
+    }
+    
+    /* Selectboxes and Inputs */
+    div[data-baseweb="select"] > div {
+        background-color: #fffdf7 !important;
+        border-radius: 999px !important;
+        border: none !important;
+        box-shadow: 4px 4px 10px rgba(175, 180, 200, 0.35),
+                    -4px -4px 10px rgba(255, 255, 255, 0.85),
+                    inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 3px rgba(175, 180, 200, 0.2) !important;
+        color: #383139 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Streamlit Tabs Customization */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 12px;
+        background-color: transparent;
+        padding-bottom: 8px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #fffdf7;
+        border-radius: 999px;
+        border: none;
+        padding: 8px 24px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #48404b;
+        box-shadow: 5px 5px 12px rgba(175, 180, 205, 0.35),
+                    -5px -5px 12px rgba(255, 255, 255, 0.9),
+                    inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 3px rgba(175, 180, 205, 0.2);
+        transition: all 0.18s ease;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #2563EB !important;
-        color: #FFFFFF !important;
-        border-color: #2563EB !important;
-        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        background-color: #f6a3ca !important;
+        color: #383139 !important;
+        box-shadow: 5px 5px 14px rgba(205, 140, 170, 0.5),
+                    -5px -5px 14px rgba(255, 255, 255, 0.95),
+                    inset 2px 2px 4px rgba(255, 255, 255, 0.85),
+                    inset -2px -2px 4px rgba(190, 110, 140, 0.3) !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
-# 2. MODEL LOADING HELPER
+# 2. MODEL LOADING (CLEAN & DIRECT)
 # ---------------------------------------------------------------------
 @st.cache_resource
 def load_logistics_models():
@@ -317,24 +408,29 @@ def load_logistics_models():
 classifier, label_encoder, isolation_forest, anomaly_preprocessor, loaded_path = load_logistics_models()
 
 # ---------------------------------------------------------------------
-# 3. HEADER BANNER
+# 3. CLAYMORPHISM OPENING HERO (PINK CUSHION)
 # ---------------------------------------------------------------------
 st.markdown("""
-<div class="header-banner">
-    <div class="header-badge">🚢 AI-Powered Logistics Intelligence</div>
-    <h1>Global Supply Chain Bottleneck Predictor</h1>
-    <p>Real-time Port-to-Warehouse Congestion Triage & Proactive Delay Mitigation</p>
+<div class="clay-hero">
+    <div>
+        <div class="clay-tag">🚢 Port-to-Warehouse Congestion Triage</div>
+        <h1>Global Supply Chain Bottleneck Predictor</h1>
+        <p>Tactile intelligence dispatch engine analyzing dwell waveforms, yard saturation, and customs turbulence to neutralize logistics bottlenecks before regional supply chains collapse.</p>
+    </div>
+    <div style="background-color: #fffdf7; border-radius: 999px; padding: 12px 24px; font-weight: 800; font-size: 13px; box-shadow: 4px 4px 10px rgba(190,140,165,0.4), -4px -4px 10px rgba(255,255,255,0.8), inset 2px 2px 4px rgba(255,255,255,0.8), inset -2px -2px 4px rgba(190,140,165,0.2);">
+        ● Telemetry Online
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
-# 4. SIDEBAR: OPERATIONAL CONTROLS & PRESET DISRUPTIONS
+# 4. SIDEBAR (CLAY PILLED INPUTS)
 # ---------------------------------------------------------------------
-st.sidebar.markdown("### 🎛️ Operational Presets")
+st.sidebar.markdown("### 🎛️ Operational Scenarios")
 
 scenarios = {
-    "⚡ Choose a Quick Preset...": None,
-    "🟢 Normal Corridor Flow (Shanghai ➔ LA)": {
+    "⚡ Select Disruption Scenario...": None,
+    "🟢 Normal Flow (Shanghai ➔ LA)": {
         "dwell": 18.0, "throughput": 245.0, "capacity": 65.0, "customs": 1.5,
         "weather": 0.8, "labor": 0.015, "carrier": "MSK", "priority": "STANDARD",
         "origin": "PORT_CN_SHA", "dest": "PORT_US_LAX"
@@ -356,10 +452,10 @@ scenarios = {
     }
 }
 
-selected_preset_name = st.sidebar.selectbox("Quick-Load Disruption Scenario:", list(scenarios.keys()))
-preset = scenarios[selected_preset_name] if selected_preset_name != "⚡ Choose a Quick Preset..." else None
+selected_preset_name = st.sidebar.selectbox("Load Disruption Preset:", list(scenarios.keys()))
+preset = scenarios[selected_preset_name] if selected_preset_name != "⚡ Select Disruption Scenario..." else None
 
-# Pre-populated defaults
+# Pre-populated values
 val_dwell = preset["dwell"] if preset else 22.0
 val_tp = preset["throughput"] if preset else 230.0
 val_cap = preset["capacity"] if preset else 72.0
@@ -372,7 +468,7 @@ val_origin = preset["origin"] if preset else "PORT_CN_SHA"
 val_dest = preset["dest"] if preset else "PORT_US_LAX"
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 📍 Shipment Route & Carrier")
+st.sidebar.markdown("### 📍 Route & Carrier Parameters")
 
 col_sb1, col_sb2 = st.sidebar.columns(2)
 with col_sb1:
@@ -390,17 +486,17 @@ with col_sb2:
     priority = st.selectbox("Priority Tier", priority_list, index=priority_list.index(val_priority) if val_priority in priority_list else 0)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 📡 Port & Yard Telemetry Inputs")
+st.sidebar.markdown("### 📡 Port & Yard Telemetry Sliders")
 
-dwell = st.sidebar.slider("Container Dwell Time (Hours)", 4.0, 95.0, float(val_dwell), 0.5)
-capacity = st.sidebar.slider("Yard Capacity Utilization (%)", 30.0, 120.0, float(val_cap), 1.0)
+dwell = st.sidebar.slider("Dwell Time (Hours)", 4.0, 95.0, float(val_dwell), 0.5)
+capacity = st.sidebar.slider("Yard Capacity (%)", 30.0, 120.0, float(val_cap), 1.0)
 throughput = st.sidebar.slider("Berth Throughput (TEU/hr)", 60.0, 430.0, float(val_tp), 5.0)
-customs = st.sidebar.slider("Customs Hold Duration (Hours)", 0.0, 48.0, float(val_cust), 0.5)
-weather = st.sidebar.slider("Weather Severity Index (0-10)", 0.0, 10.0, float(val_weath), 0.1)
-labor = st.sidebar.slider("Labor Deficit Ratio (0.0 - 0.5)", 0.0, 0.5, float(val_labor), 0.005)
+customs = st.sidebar.slider("Customs Hold (Hours)", 0.0, 48.0, float(val_cust), 0.5)
+weather = st.sidebar.slider("Weather Severity (0-10)", 0.0, 10.0, float(val_weath), 0.1)
+labor = st.sidebar.slider("Labor Deficit Ratio", 0.0, 0.5, float(val_labor), 0.005)
 
 # ---------------------------------------------------------------------
-# 5. INFERENCE EXECUTION
+# 5. PREDICTION COMPUTATION (STRICT & CLEAN)
 # ---------------------------------------------------------------------
 if classifier is None:
     st.error("⚠️ Model artifacts not found. Please verify xgboost_delay_model.pkl exists.")
@@ -443,7 +539,7 @@ p_crit = prob_dict.get("CRITICAL_DELAY", 0.0)
 
 confidence_pct = round(float(max(probabilities)) * 100, 1)
 
-# Anomaly check
+# Sensor Anomaly check
 anomaly_features = [
     "dwell_time_hours", "throughput_teu_per_hr", "capacity_utilization_pct",
     "customs_hold_hours", "weather_severity_index", "labor_deficit_ratio",
@@ -457,241 +553,260 @@ is_anomaly = bool(isolation_forest.predict(scaled_anomaly)[0] == -1)
 risk_score = round(p_risk * 50.0 + p_crit * 100.0, 1)
 
 # ---------------------------------------------------------------------
-# 6. TOP KPI SUMMARY ROW
+# 6. PASTEL FACT CUSHIONS ROW
 # ---------------------------------------------------------------------
 origin_short = origin.replace("PORT_", "")
 dest_short = destination.replace("PORT_", "")
 
-kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+f1, f2, f3, f4 = st.columns(4)
 
-with kpi1:
+with f1:
     st.markdown(f'''
-    <div class="kpi-card">
-        <div class="kpi-label">Active Corridor</div>
-        <div class="kpi-val" style="font-size:20px;">{origin_short} ➔ {dest_short}</div>
+    <div class="clay-cushion cool">
+        <div class="cushion-label">Active Corridor</div>
+        <div class="cushion-val" style="font-size:19px;">{origin_short} ➔ {dest_short}</div>
     </div>
     ''', unsafe_allow_html=True)
 
-with kpi2:
+with f2:
     st.markdown(f'''
-    <div class="kpi-card">
-        <div class="kpi-label">Carrier & Priority</div>
-        <div class="kpi-val" style="font-size:20px;">{carrier} • <span style="font-size:15px; color:#2563EB;">{priority}</span></div>
+    <div class="clay-cushion lavender">
+        <div class="cushion-label">Carrier & Priority</div>
+        <div class="cushion-val" style="font-size:19px;">{carrier} • {priority[:4]}</div>
     </div>
     ''', unsafe_allow_html=True)
 
-with kpi3:
-    status_color = "green" if not is_anomaly else "amber"
-    status_text = "Nominal" if not is_anomaly else "Irregular"
+with f3:
+    status_cushion = "mint" if not is_anomaly else "pink"
+    status_text = "Nominal Flow" if not is_anomaly else "Irregular Sensor"
     st.markdown(f'''
-    <div class="kpi-card">
-        <div class="kpi-label">Sensor Telemetry</div>
-        <div class="kpi-val {status_color}" style="font-size:20px;">{"● " + status_text}</div>
+    <div class="clay-cushion {status_cushion}">
+        <div class="cushion-label">Sensor Telemetry</div>
+        <div class="cushion-val" style="font-size:19px;">{status_text}</div>
     </div>
     ''', unsafe_allow_html=True)
 
-with kpi4:
-    risk_color = "green" if risk_score < 35 else ("amber" if risk_score < 70 else "red")
+with f4:
+    r_cushion = "mint" if risk_score < 35 else ("warm" if risk_score < 70 else "pink")
     st.markdown(f'''
-    <div class="kpi-card">
-        <div class="kpi-label">Bottleneck Risk Index</div>
-        <div class="kpi-val {risk_color}">{risk_score}%</div>
+    <div class="clay-cushion {r_cushion}">
+        <div class="cushion-label">Bottleneck Risk Index</div>
+        <div class="cushion-val">{risk_score}%</div>
     </div>
     ''', unsafe_allow_html=True)
-
-st.markdown("<div style='height: 14px;'></div>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
-# 7. ROUTE CORRIDOR FLOW STEPPER
+# 7. CLAY ROUTE STEPPER (INFLATED TRANSIT PIPELINE)
 # ---------------------------------------------------------------------
-c_dwell_alert = "alert" if dwell > 30 else ("active" if dwell > 20 else "")
+c_dwell_alert = "alert" if dwell > 32 else ("active" if dwell > 20 else "")
 c_yard_alert = "alert" if capacity > 90 else ("active" if capacity > 75 else "")
 c_gate_alert = "alert" if pred_label == "CRITICAL_DELAY" else ("active" if pred_label == "AT_RISK" else "")
 
 st.markdown(f"""
-<div class="corridor-container">
-    <div class="corridor-step">
-        <div class="corridor-dot active">1</div>
-        <div class="corridor-name">Origin Berth<br><span style="color:#2563EB; font-weight:700;">{origin_short}</span></div>
+<div class="clay-stepper">
+    <div class="stepper-node">
+        <div class="stepper-pill active">1</div>
+        <div class="stepper-label">{origin_short}<br><span style="font-size:11px; opacity:0.8;">Origin Berth</span></div>
     </div>
-    <div class="corridor-line active"></div>
-    <div class="corridor-step">
-        <div class="corridor-dot active">2</div>
-        <div class="corridor-name">Transpacific<br><span style="color:#64748B;">Transit</span></div>
+    <div class="stepper-bar"></div>
+    <div class="stepper-node">
+        <div class="stepper-pill active">2</div>
+        <div class="stepper-label">Ocean<br><span style="font-size:11px; opacity:0.8;">Transpacific</span></div>
     </div>
-    <div class="corridor-line {'active' if dwell > 20 else ''}"></div>
-    <div class="corridor-step">
-        <div class="corridor-dot {c_dwell_alert if c_dwell_alert else 'active'}">3</div>
-        <div class="corridor-name">Port Customs<br><span style="color:#64748B;">{customs:.1f}h hold</span></div>
+    <div class="stepper-bar"></div>
+    <div class="stepper-node">
+        <div class="stepper-pill {c_dwell_alert if c_dwell_alert else 'active'}">3</div>
+        <div class="stepper-label">Customs<br><span style="font-size:11px; opacity:0.8;">{customs:.1f}h hold</span></div>
     </div>
-    <div class="corridor-line {'active' if capacity > 75 else ''}"></div>
-    <div class="corridor-step">
-        <div class="corridor-dot {c_yard_alert if c_yard_alert else 'active'}">4</div>
-        <div class="corridor-name">Terminal Yard<br><span style="color:#64748B;">{capacity:.0f}% full</span></div>
+    <div class="stepper-bar"></div>
+    <div class="stepper-node">
+        <div class="stepper-pill {c_yard_alert if c_yard_alert else 'active'}">4</div>
+        <div class="stepper-label">Yard Staging<br><span style="font-size:11px; opacity:0.8;">{capacity:.0f}% capacity</span></div>
     </div>
-    <div class="corridor-line {'active' if pred_label != 'ON_TIME' else ''}"></div>
-    <div class="corridor-step">
-        <div class="corridor-dot {c_gate_alert if c_gate_alert else 'active'}">5</div>
-        <div class="corridor-name">Destination Gate<br><span style="color:#2563EB; font-weight:700;">{dest_short}</span></div>
+    <div class="stepper-bar"></div>
+    <div class="stepper-node">
+        <div class="stepper-pill {c_gate_alert if c_gate_alert else 'active'}">5</div>
+        <div class="stepper-label">{dest_short}<br><span style="font-size:11px; opacity:0.8;">Gate Clearance</span></div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
-# 8. MAIN INTERACTIVE TABS
+# 8. SHARED CREAM TRAY & TABS
 # ---------------------------------------------------------------------
-tab_triage, tab_visuals = st.tabs(["🎯 Live Bottleneck Prediction", "📊 Telemetry Analytics & Sensitivity"])
+tab_triage, tab_visuals = st.tabs(["🎯 Live Bottleneck Prediction", "📊 Visual Telemetry & What-If Simulation"])
 
-# ---------------------------------------------------------------------
-# TAB 1: PREDICTION & ACTION DIRECTIVE
-# ---------------------------------------------------------------------
 with tab_triage:
-    col_pred_left, col_pred_right = st.columns([1.1, 1.0], gap="large")
+    st.markdown('<div class="clay-tray">', unsafe_allow_html=True)
     
-    with col_pred_left:
-        # Prediction Status Banner
+    col_t1, col_t2 = st.columns([1.15, 1.0], gap="large")
+    
+    with col_t1:
+        # Prediction Pill Banner
         if pred_label == "ON_TIME":
             st.markdown(f"""
-            <div class="prediction-card-ontime">
-                <div class="prediction-title">Shipment Velocity Forecast</div>
-                <div class="prediction-main-status">🟢 ON TIME</div>
-                <div class="prediction-confidence">Confidence: <strong>{confidence_pct}%</strong> • Standard clearance window maintained</div>
+            <div class="prediction-clay-ontime">
+                <div class="cushion-label" style="color:#204b36;">Shipment Velocity Forecast</div>
+                <div class="pred-badge-status">🟢 ON TIME</div>
+                <div class="pred-badge-meta">Confidence: <strong>{confidence_pct}%</strong> • Predicts standard multimodal gate clearance without bottleneck friction.</div>
             </div>
             """, unsafe_allow_html=True)
         elif pred_label == "AT_RISK":
             st.markdown(f"""
-            <div class="prediction-card-atrisk">
-                <div class="prediction-title">Shipment Velocity Forecast</div>
-                <div class="prediction-main-status">🟡 AT RISK (Moderate Delay)</div>
-                <div class="prediction-confidence">Confidence: <strong>{confidence_pct}%</strong> • Potential +12h to +24h schedule slippage</div>
+            <div class="prediction-clay-atrisk">
+                <div class="cushion-label" style="color:#524213;">Shipment Velocity Forecast</div>
+                <div class="pred-badge-status">🟡 AT RISK (Moderate Delay)</div>
+                <div class="pred-badge-meta">Confidence: <strong>{confidence_pct}%</strong> • Moderate corridor dwell friction (+12h to +24h schedule slippage).</div>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown(f"""
-            <div class="prediction-card-critical">
-                <div class="prediction-title">Shipment Velocity Forecast</div>
-                <div class="prediction-main-status">🔴 CRITICAL DELAY</div>
-                <div class="prediction-confidence">Confidence: <strong>{confidence_pct}%</strong> • Severe corridor gridlock detected (&gt;48h delay)</div>
+            <div class="prediction-clay-critical">
+                <div class="cushion-label" style="color:#4d1b31;">Shipment Velocity Forecast</div>
+                <div class="pred-badge-status">🔴 CRITICAL DELAY</div>
+                <div class="pred-badge-meta">Confidence: <strong>{confidence_pct}%</strong> • Severe terminal bottleneck detected (&gt;48h compounding delay).</div>
             </div>
             """, unsafe_allow_html=True)
-            
-        # Tactical Operational Directive
+
+        # Tactical Action Directive (Lavender Pillow)
         if pred_label == "CRITICAL_DELAY":
             st.markdown("""
-            <div class="directive-card critical">
-                <div class="directive-badge">⚡ Tactical Action Directive // Emergency Escalation</div>
-                <div class="directive-text">
-                    <strong>REROUTE TO SECONDARY INLAND RAIL:</strong> Immediately trigger off-dock container drayage. Bypass congested terminal gates and rebook on Union Pacific/BNSF priority rail corridors to prevent compounding factory halts.
+            <div class="tactical-pillow" style="background-color: #f6a3ca;">
+                <div class="tactical-title" style="color:#451c2d;">⚡ Tactical Action Directive // Priority Rail Diversion</div>
+                <div class="tactical-body">
+                    <strong>DISPATCH OFF-DOCK SHUNT:</strong> Immediate emergency diversion of container to Union Pacific/BNSF inland intermodal rail ramp. Avoid congested local highway gate to prevent cascading plant shutdown.
                 </div>
             </div>
             """, unsafe_allow_html=True)
         elif pred_label == "AT_RISK":
             st.markdown("""
-            <div class="directive-card warning">
-                <div class="directive-badge">⚠️ Tactical Action Directive // Proactive Buffer Extension</div>
-                <div class="directive-text">
-                    <strong>EXTEND APPOINTMENT WINDOW:</strong> Grant +18 hour extension to distribution centers. Alert drayage dispatch to prioritize night-gate turns while monitoring terminal dwell closely.
+            <div class="tactical-pillow" style="background-color: #f9e7a8;">
+                <div class="tactical-title" style="color:#4a3a0e;">⚠️ Tactical Action Directive // Buffer Extension</div>
+                <div class="tactical-body">
+                    <strong>GRANT APPOINTMENT EXTENSION:</strong> Extend distribution warehouse intake SLA by +18 hours. Direct drayage fleet to night-gate operations while berth throughput recovers.
                 </div>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div class="directive-card ontime">
-                <div class="directive-badge">✅ Tactical Action Directive // Standard Transit Flow</div>
-                <div class="directive-text">
-                    <strong>MAINTAIN PLANNED DISPATCH:</strong> Container is clearing berth cycles within contractual SLA limits. Proceed with standard multimodal drayage schedule.
+            <div class="tactical-pillow" style="background-color: #c0efdc;">
+                <div class="tactical-title" style="color:#1b4231;">✅ Tactical Action Directive // Standard Transit Flow</div>
+                <div class="tactical-body">
+                    <strong>MAINTAIN SCHEDULED PASS:</strong> Gate turn times and dwell waves fall well within service standards. Continue scheduled inland trucking transfers.
                 </div>
             </div>
             """, unsafe_allow_html=True)
-            
-        # Sensor Anomaly Banner
-        if is_anomaly:
-            st.warning("⚠️ **Sensor Telemetry Irregularity**: Physical sensor readings deviate from historical operational distributions. Cross-reference berth gate counters.")
-            
-        # Leading Telemetry Drivers Table
-        st.markdown("<h4 style='font-size:15px; font-weight:700; color:#1E3A8A; margin-top:14px; margin-bottom:8px;'>🔍 Key Telemetry Risk Drivers</h4>", unsafe_allow_html=True)
-        drivers = [
-            {"Factor": "Container Dwell Time", "Observed": f"{dwell:.1f} hrs", "Safe Range": "< 24 hrs", "Status": "🔴 Critical" if dwell > 35 else ("🟡 Elevated" if dwell > 24 else "🟢 Normal")},
-            {"Factor": "Yard Saturation", "Observed": f"{capacity:.1f}%", "Safe Range": "< 80%", "Status": "🔴 Overflow" if capacity > 100 else ("🟡 High" if capacity > 80 else "🟢 Optimal")},
-            {"Factor": "Customs Hold", "Observed": f"{customs:.1f} hrs", "Safe Range": "< 4 hrs", "Status": "🔴 Backlogged" if customs > 8 else ("🟡 Queued" if customs > 4 else "🟢 Cleared")},
-            {"Factor": "Berth Crane Velocity", "Observed": f"{throughput:.0f} TEU/h", "Safe Range": "> 180 TEU/h", "Status": "🔴 Choked" if throughput < 120 else ("🟡 Moderate" if throughput < 180 else "🟢 Swift")},
-            {"Factor": "Weather Severity", "Observed": f"{weather:.1f} / 10", "Safe Range": "< 3.0", "Status": "🔴 Severe Gale" if weather > 4.5 else ("🟡 Adverse" if weather > 2.5 else "🟢 Calm")}
-        ]
-        st.dataframe(pd.DataFrame(drivers), hide_index=True, use_container_width=True)
 
-    with col_pred_right:
-        # VISUALIZATION 1: Bottleneck Risk Speedometer Gauge (Plotly)
-        st.markdown("<h4 style='font-size:15px; font-weight:700; color:#1E3A8A; margin-bottom:2px;'>⏱️ Bottleneck Risk Gauge</h4>", unsafe_allow_html=True)
+        # Telemetry Risk Drivers Table (HTML Clay Table for 100% Contrast)
+        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-top:8px;'>🔍 Key Telemetry Drivers</h4>", unsafe_allow_html=True)
+        drivers = [
+            ("Container Dwell Time", f"{dwell:.1f} hrs", "< 24 hrs", "🔴 Critical" if dwell > 35 else ("🟡 Elevated" if dwell > 24 else "🟢 Normal")),
+            ("Yard Saturation", f"{capacity:.1f}%", "< 80%", "🔴 Overflow" if capacity > 100 else ("🟡 High" if capacity > 80 else "🟢 Optimal")),
+            ("Customs Hold", f"{customs:.1f} hrs", "< 4 hrs", "🔴 Backlogged" if customs > 8 else ("🟡 Queued" if customs > 4 else "🟢 Cleared")),
+            ("Berth Crane Velocity", f"{throughput:.0f} TEU/h", "> 180 TEU/h", "🔴 Choked" if throughput < 120 else ("🟡 Moderate" if throughput < 180 else "🟢 Swift")),
+            ("Weather Severity", f"{weather:.1f} / 10", "< 3.0", "🔴 Severe Gale" if weather > 4.5 else ("🟡 Adverse" if weather > 2.5 else "🟢 Calm"))
+        ]
+        
+        table_html = """
+        <table class="clay-table">
+            <thead>
+                <tr>
+                    <th>Telemetry Channel</th>
+                    <th>Observed</th>
+                    <th>Safe Range</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+        for factor, obs, bench, status in drivers:
+            table_html += f"""
+                <tr>
+                    <td><strong>{factor}</strong></td>
+                    <td>{obs}</td>
+                    <td style="color:#64748B;">{bench}</td>
+                    <td>{status}</td>
+                </tr>
+            """
+        table_html += "</tbody></table>"
+        st.markdown(table_html, unsafe_allow_html=True)
+
+    with col_t2:
+        # VISUALIZATION 1: Claymorphic Bottleneck Risk Gauge
+        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-bottom:2px;'>⏱️ Bottleneck Risk Gauge</h4>", unsafe_allow_html=True)
         
         gauge_fig = go.Figure(go.Indicator(
             mode="gauge+number",
             value=risk_score,
-            number={'suffix': "%", 'font': {'size': 36, 'family': 'Plus Jakarta Sans', 'color': '#1E3A8A'}},
-            title={'text': "Composite Delay Risk Index", 'font': {'size': 12, 'color': '#64748B'}},
+            number={'suffix': "%", 'font': {'size': 38, 'family': 'Instrument Sans', 'color': '#383139'}},
+            title={'text': "Composite Delay Risk", 'font': {'size': 13, 'color': '#48404b', 'family': 'Instrument Sans'}},
             gauge={
-                'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#94A3B8"},
-                'bar': {'color': "#2563EB", 'thickness': 0.28},
-                'bgcolor': "#F1F5F9",
+                'axis': {'range': [0, 100], 'tickwidth': 1.5, 'tickcolor': "#48404b", 'tickfont': {'family': 'Instrument Sans', 'size': 11}},
+                'bar': {'color': "#383139", 'thickness': 0.28},
+                'bgcolor': "#fffdf7",
                 'borderwidth': 0,
                 'steps': [
-                    {'range': [0, 35], 'color': '#D1FAE5'},   # Soft Emerald
-                    {'range': [35, 70], 'color': '#FEF3C7'},  # Soft Amber
-                    {'range': [70, 100], 'color': '#FEE2E2'}  # Soft Crimson
+                    {'range': [0, 35], 'color': '#c0efdc'},   # Mint
+                    {'range': [35, 70], 'color': '#f9e7a8'},  # Butter Yellow
+                    {'range': [70, 100], 'color': '#f6a3ca'}  # Pastel Pink
                 ],
                 'threshold': {
-                    'line': {'color': "#DC2626", 'width': 3},
-                    'thickness': 0.8,
+                    'line': {'color': "#383139", 'width': 3.5},
+                    'thickness': 0.85,
                     'value': risk_score
                 }
             }
         ))
         gauge_fig.update_layout(
-            height=210,
-            margin=dict(l=20, r=20, t=25, b=10),
-            paper_bgcolor="#FFFFFF",
-            font=dict(family="Plus Jakarta Sans")
+            height=215,
+            margin=dict(l=25, r=25, t=30, b=10),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            font=dict(family="Instrument Sans", color="#383139")
         )
         st.plotly_chart(gauge_fig, use_container_width=True)
 
-        # VISUALIZATION 2: Calibrated Probability Donut Chart (Plotly)
-        st.markdown("<h4 style='font-size:15px; font-weight:700; color:#1E3A8A; margin-top:8px; margin-bottom:2px;'>📊 Probability Share</h4>", unsafe_allow_html=True)
+        # VISUALIZATION 2: Claymorphic Probability Donut Chart
+        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-top:8px; margin-bottom:2px;'>📊 Calibrated Probability Share</h4>", unsafe_allow_html=True)
         
         donut_labels = ["On Time", "At Risk", "Critical Delay"]
         donut_values = [p_on * 100, p_risk * 100, p_crit * 100]
-        donut_colors = ["#10B981", "#F59E0B", "#EF4444"]
+        donut_colors = ["#c0efdc", "#f9e7a8", "#f6a3ca"]
 
         donut_fig = go.Figure(data=[go.Pie(
             labels=donut_labels,
             values=donut_values,
             hole=0.62,
-            marker=dict(colors=donut_colors, line=dict(color="#FFFFFF", width=3)),
+            marker=dict(colors=donut_colors, line=dict(color="#fffdf7", width=3)),
             textinfo='percent',
             hoverinfo='label+percent',
-            textfont=dict(size=13, family="Plus Jakarta Sans", color="#FFFFFF")
+            textfont=dict(size=13, family="Instrument Sans", color="#383139")
         )])
         donut_fig.update_layout(
-            height=210,
+            height=215,
             margin=dict(l=10, r=10, t=10, b=10),
-            paper_bgcolor="#FFFFFF",
-            legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5, font=dict(size=12, color="#334155")),
-            annotations=[dict(text=f"{pred_label.replace('_', ' ')}<br><span style='font-size:18px; font-weight:800; color:#1E3A8A;'>{confidence_pct}%</span>", x=0.5, y=0.5, font_size=11, font_family="Plus Jakarta Sans", showarrow=False)]
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5, font=dict(size=12, color="#383139", family="Instrument Sans")),
+            annotations=[dict(text=f"{pred_label.replace('_', ' ')}<br><span style='font-size:20px; font-weight:800; color:#383139;'>{confidence_pct}%</span>", x=0.5, y=0.5, font_size=12, font_family="Instrument Sans", showarrow=False)]
         )
         st.plotly_chart(donut_fig, use_container_width=True)
 
-# ---------------------------------------------------------------------
-# TAB 2: ADVANCED TELEMETRY VISUALIZATIONS & SENSITIVITY
-# ---------------------------------------------------------------------
+    st.markdown('</div>', unsafe_allow_html=True)
+
 with tab_visuals:
+    st.markdown('<div class="clay-tray">', unsafe_allow_html=True)
+    
     col_v1, col_v2 = st.columns(2, gap="large")
     
     with col_v1:
-        # VISUALIZATION 3: Telemetry Radar / Spider Chart (Plotly)
-        st.markdown("<h4 style='font-size:16px; font-weight:700; color:#1E3A8A;'>🕸️ 6-Axis Telemetry Health Radar</h4>", unsafe_allow_html=True)
-        st.caption("Compares current operational conditions against the recommended baseline operating envelope.")
+        # VISUALIZATION 3: 6-Axis Telemetry Health Radar (Clay Lavender & Mint)
+        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139;'>🕸️ 6-Axis Telemetry Health Footprint</h4>", unsafe_allow_html=True)
+        st.caption("Molded polygon comparison showing current shipment metrics against optimal baseline envelopes.")
         
         radar_categories = [
             'Dwell Time', 'Yard Saturation', 'Customs Duration',
-            'Berth Slowdown', 'Weather Stress', 'Labor Deficit'
+            'Berth Throughput', 'Weather Severity', 'Labor Deficit'
         ]
         
         norm_dwell = min(100.0, (dwell / 48.0) * 100.0)
@@ -706,43 +821,44 @@ with tab_visuals:
 
         radar_fig = go.Figure()
         
-        # Baseline Area
+        # Baseline Envelope (Lavender Soft Area)
         radar_fig.add_trace(go.Scatterpolar(
             r=baseline_envelope + [baseline_envelope[0]],
             theta=radar_categories + [radar_categories[0]],
             fill='toself',
-            fillcolor='rgba(148, 163, 184, 0.2)',
-            line=dict(color='#94A3B8', dash='dash'),
-            name='Optimal Baseline'
+            fillcolor='rgba(222, 208, 249, 0.45)',
+            line=dict(color='#b59fe0', dash='dash', width=2),
+            name='Optimal Envelope'
         ))
         
-        # Current Observation
+        # Current Observation (Pink Molded Area)
         radar_fig.add_trace(go.Scatterpolar(
             r=current_footprint + [current_footprint[0]],
             theta=radar_categories + [radar_categories[0]],
             fill='toself',
-            fillcolor='rgba(37, 99, 235, 0.28)',
-            line=dict(color='#2563EB', width=2.5),
+            fillcolor='rgba(246, 163, 202, 0.45)',
+            line=dict(color='#d4659a', width=3),
             name='Current Shipment'
         ))
 
         radar_fig.update_layout(
             polar=dict(
-                radialaxis=dict(visible=True, range=[0, 100], color="#94A3B8", gridcolor="#E2E8F0"),
-                angularaxis=dict(color="#1E293B", gridcolor="#E2E8F0")
+                radialaxis=dict(visible=True, range=[0, 100], color="#48404b", gridcolor="#e2e8f0"),
+                angularaxis=dict(color="#383139", gridcolor="#e2e8f0", font=dict(family="Instrument Sans", size=12))
             ),
             showlegend=True,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5),
+            legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5, font=dict(family="Instrument Sans", color="#383139")),
             height=340,
             margin=dict(l=35, r=35, t=20, b=20),
-            paper_bgcolor="#FFFFFF"
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)"
         )
         st.plotly_chart(radar_fig, use_container_width=True)
 
     with col_v2:
-        # VISUALIZATION 4: What-If Sensitivity Simulator (Plotly)
-        st.markdown("<h4 style='font-size:16px; font-weight:700; color:#1E3A8A;'>📈 What-If Sensitivity Curve</h4>", unsafe_allow_html=True)
-        st.caption("Simulates delay probability shift as Container Dwell Time increases under present conditions.")
+        # VISUALIZATION 4: What-If Sensitivity Simulator
+        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139;'>📈 What-If Sensitivity Simulator</h4>", unsafe_allow_html=True)
+        st.caption("Simulates delay probability shift as Container Dwell Time climbs from 5h to 65h.")
         
         dwell_range = np.linspace(5.0, 65.0, 25)
         sim_data = []
@@ -766,46 +882,48 @@ with tab_visuals:
         curve_fig.add_trace(go.Scatter(
             x=curve_df["Dwell_Hours"], y=curve_df["p_ontime"],
             mode='lines', name='On Time',
-            line=dict(color='#10B981', width=3)
+            line=dict(color='#38b284', width=3.5)
         ))
         curve_fig.add_trace(go.Scatter(
             x=curve_df["Dwell_Hours"], y=curve_df["p_atrisk"],
             mode='lines', name='At Risk',
-            line=dict(color='#F59E0B', width=3)
+            line=dict(color='#e5a823', width=3.5)
         ))
         curve_fig.add_trace(go.Scatter(
             x=curve_df["Dwell_Hours"], y=curve_df["p_critical"],
             mode='lines', name='Critical Delay',
-            line=dict(color='#EF4444', width=3)
+            line=dict(color='#e2558f', width=3.5)
         ))
         
-        # Add vertical marker for current dwell time
+        # Vertical marker for current dwell time
         curve_fig.add_vline(
-            x=dwell, line_width=2, line_dash="dash", line_color="#1E3A8A",
+            x=dwell, line_width=2.5, line_dash="dash", line_color="#383139",
             annotation_text=f"Current: {dwell:.1f}h", annotation_position="top left",
-            annotation_font=dict(color="#1E3A8A", size=11, family="Plus Jakarta Sans")
+            annotation_font=dict(color="#383139", size=12, family="Instrument Sans")
         )
 
         curve_fig.update_layout(
             xaxis_title="Dwell Time (Hours)",
             yaxis_title="Probability (%)",
-            yaxis=dict(range=[0, 105], gridcolor="#F1F5F9"),
-            xaxis=dict(gridcolor="#F1F5F9"),
+            yaxis=dict(range=[0, 105], gridcolor="#f1f2fa", color="#48404b"),
+            xaxis=dict(gridcolor="#f1f2fa", color="#48404b"),
             height=340,
             margin=dict(l=30, r=20, t=20, b=20),
-            paper_bgcolor="#FFFFFF",
-            plot_bgcolor="#FFFFFF",
-            legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5)
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            font=dict(family="Instrument Sans", color="#383139"),
+            legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5, font=dict(family="Instrument Sans", color="#383139"))
         )
         st.plotly_chart(curve_fig, use_container_width=True)
 
+    st.markdown('</div>', unsafe_allow_html=True)
+
 # ---------------------------------------------------------------------
-# 9. FOOTER
+# 9. CLOSING & FOOTER
 # ---------------------------------------------------------------------
-st.markdown("---")
 st.markdown("""
-<div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748B; padding: 6px 0;">
-    <div><strong>Global Supply Chain Logistics Intelligence Platform</strong> • Production Operations Engine</div>
-    <div>Live Telemetry Active</div>
+<div style="background-color: #fffdf7; border-radius: 30px; padding: 18px 26px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: #48404b; box-shadow: 6px 6px 16px rgba(185, 190, 210, 0.3), -6px -6px 16px rgba(255, 255, 255, 0.9);">
+    <div>Global Supply Chain Logistics Intelligence Console • Production Edition</div>
+    <div>Live Corridor Telemetry Active</div>
 </div>
 """, unsafe_allow_html=True)
