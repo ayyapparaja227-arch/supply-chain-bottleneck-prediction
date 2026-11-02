@@ -724,3 +724,4 @@ st.markdown("""
     <div>PyTorch LSTM • 5,921 Parameters • 35 Epochs MPS Acceleration</div>
 </div>
 """, unsafe_allow_html=True)
+
