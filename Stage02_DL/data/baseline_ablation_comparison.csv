@@ -1,0 +1,5 @@
+model,mae_hours,rmse_hours,r2_score
+1. Historical Node Mean (Static),5.53,7.07,0.389
+2. Spatial Graph 1-Hop Neighbor (Spatial),6.19,9.01,0.007
+3. Naive Persistence [t-1 Dwell] (Heuristic),3.84,4.94,0.702
+4. PyTorch LSTM Forecaster [12h History] (Deep Learning),4.28,5.7,0.602
