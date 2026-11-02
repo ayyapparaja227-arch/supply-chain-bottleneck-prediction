@@ -47,7 +47,7 @@ st.markdown("""
         font-family: var(--dp-typography-face) !important;
     }
 
-    /* Text Resets */
+    /* Global Typography Resets */
     h1, h2, h3, h4, h5, h6, p, span, div, label {
         font-family: var(--dp-typography-face) !important;
         color: var(--dp-color-ink);
@@ -56,8 +56,8 @@ st.markdown("""
     /* Claymorphism Hero Pink Cushion */
     .clay-hero {
         background-color: #f6a3ca;
-        border-radius: 40px;
-        padding: 32px 36px;
+        border-radius: 38px;
+        padding: 30px 36px;
         color: #383139;
         margin-bottom: 24px;
         box-shadow: 10px 10px 24px rgba(188, 155, 175, 0.45),
@@ -71,7 +71,7 @@ st.markdown("""
         gap: 16px;
     }
     .clay-hero h1 {
-        font-size: 30px;
+        font-size: 28px;
         font-weight: 800;
         margin: 0;
         color: #383139 !important;
@@ -79,7 +79,7 @@ st.markdown("""
         line-height: 1.15;
     }
     .clay-hero p {
-        font-size: 15px;
+        font-size: 14.5px;
         color: #48404b !important;
         margin: 8px 0 0 0;
         line-height: 1.45;
@@ -90,7 +90,7 @@ st.markdown("""
         background-color: #fffdf7;
         padding: 6px 16px;
         border-radius: 999px;
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
         letter-spacing: 0.05em;
         text-transform: uppercase;
@@ -99,12 +99,12 @@ st.markdown("""
                     -4px -4px 10px rgba(255, 255, 255, 0.8),
                     inset 2px 2px 4px rgba(255, 255, 255, 0.8),
                     inset -2px -2px 4px rgba(188, 155, 175, 0.2);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     /* Clay Pastel Fact Cushions */
     .clay-cushion {
-        border-radius: 30px;
+        border-radius: 28px;
         padding: 18px 22px;
         box-shadow: 8px 8px 18px rgba(175, 180, 200, 0.4),
                     -8px -8px 18px rgba(255, 255, 255, 0.95),
@@ -124,14 +124,14 @@ st.markdown("""
     .clay-cushion.pink { background-color: #f6a3ca; }
 
     .cushion-label {
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.04em;
         color: #48404b;
     }
     .cushion-val {
-        font-size: 22px;
+        font-size: 21px;
         font-weight: 800;
         color: #383139;
         margin-top: 4px;
@@ -141,7 +141,7 @@ st.markdown("""
     /* Shared Cream Tray Container */
     .clay-tray {
         background-color: #fffdf7;
-        border-radius: 42px;
+        border-radius: 38px;
         padding: 28px 32px;
         box-shadow: 12px 12px 28px rgba(180, 185, 205, 0.35),
                     -12px -12px 28px rgba(255, 255, 255, 0.95),
@@ -150,43 +150,43 @@ st.markdown("""
         margin-bottom: 24px;
     }
 
-    /* Result Pill Banners */
+    /* Prediction Result Pill Banners */
     .prediction-clay-ontime {
         background-color: #c0efdc;
-        border-radius: 32px;
+        border-radius: 30px;
         padding: 22px 26px;
         color: #244635;
         box-shadow: 8px 8px 18px rgba(145, 195, 175, 0.45),
                     -8px -8px 18px rgba(255, 255, 255, 0.95),
                     inset 3px 3px 6px rgba(255, 255, 255, 0.8),
                     inset -3px -3px 6px rgba(120, 175, 150, 0.3);
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     .prediction-clay-atrisk {
         background-color: #f9e7a8;
-        border-radius: 32px;
+        border-radius: 30px;
         padding: 22px 26px;
         color: #4a3c10;
         box-shadow: 8px 8px 18px rgba(210, 195, 135, 0.45),
                     -8px -8px 18px rgba(255, 255, 255, 0.95),
                     inset 3px 3px 6px rgba(255, 255, 255, 0.8),
                     inset -3px -3px 6px rgba(195, 170, 100, 0.3);
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     .prediction-clay-critical {
         background-color: #f6a3ca;
-        border-radius: 32px;
+        border-radius: 30px;
         padding: 22px 26px;
         color: #451c2d;
         box-shadow: 8px 8px 18px rgba(205, 140, 170, 0.45),
                     -8px -8px 18px rgba(255, 255, 255, 0.95),
                     inset 3px 3px 6px rgba(255, 255, 255, 0.8),
                     inset -3px -3px 6px rgba(190, 110, 140, 0.3);
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     .pred-badge-status {
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 800;
         letter-spacing: -0.01em;
         display: flex;
@@ -194,7 +194,7 @@ st.markdown("""
         gap: 10px;
     }
     .pred-badge-meta {
-        font-size: 14px;
+        font-size: 13.5px;
         font-weight: 600;
         margin-top: 4px;
         opacity: 0.95;
@@ -202,28 +202,25 @@ st.markdown("""
 
     /* Tactical Action Pillow */
     .tactical-pillow {
-        background-color: #ded0f9;
-        border-radius: 28px;
-        padding: 20px 24px;
+        border-radius: 26px;
+        padding: 18px 22px;
         color: #383139;
-        box-shadow: 6px 6px 14px rgba(185, 170, 215, 0.4),
+        box-shadow: 6px 6px 14px rgba(185, 170, 215, 0.35),
                     -6px -6px 14px rgba(255, 255, 255, 0.9),
                     inset 3px 3px 6px rgba(255, 255, 255, 0.75),
                     inset -3px -3px 6px rgba(175, 160, 205, 0.25);
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     .tactical-title {
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.06em;
-        color: #4a366b;
         margin-bottom: 6px;
     }
     .tactical-body {
-        font-size: 14px;
+        font-size: 13.5px;
         line-height: 1.5;
-        color: #383139;
         font-weight: 500;
     }
 
@@ -233,9 +230,9 @@ st.markdown("""
         align-items: center;
         justify-content: space-between;
         background-color: #fffdf7;
-        border-radius: 36px;
-        padding: 18px 26px;
-        margin-bottom: 24px;
+        border-radius: 34px;
+        padding: 16px 24px;
+        margin-bottom: 22px;
         box-shadow: 8px 8px 20px rgba(180, 185, 205, 0.3),
                     -8px -8px 20px rgba(255, 255, 255, 0.9),
                     inset 2px 2px 5px rgba(255, 255, 255, 0.8),
@@ -246,8 +243,8 @@ st.markdown("""
         flex: 1;
     }
     .stepper-pill {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
         border-radius: 999px;
         background-color: #c5e5fb;
         color: #204b6b;
@@ -265,60 +262,93 @@ st.markdown("""
     .stepper-pill.alert {
         background-color: #f6a3ca;
         color: #451c2d;
-        box-shadow: 3px 3px 8px rgba(205, 140, 170, 0.45),
-                    -3px -3px 8px rgba(255, 255, 255, 0.9),
-                    inset 2px 2px 3px rgba(255, 255, 255, 0.8),
-                    inset -2px -2px 3px rgba(190, 110, 140, 0.3);
     }
     .stepper-pill.active {
         background-color: #c0efdc;
         color: #1b4231;
     }
     .stepper-label {
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
         color: #48404b;
     }
     .stepper-bar {
         flex: 1;
-        height: 6px;
+        height: 5px;
         background-color: #ded0f9;
         border-radius: 999px;
-        margin: 0 12px 18px 12px;
-        box-shadow: inset 1px 1px 2px rgba(170, 155, 200, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.8);
+        margin: 0 10px 16px 10px;
     }
 
-    /* Custom Table Styling for Drivers */
+    /* Clay Table Styling for Drivers */
+    .table-tray {
+        background-color: #fffdf7;
+        border-radius: 28px;
+        padding: 16px 20px;
+        box-shadow: 6px 6px 16px rgba(180, 185, 205, 0.3),
+                    -6px -6px 16px rgba(255, 255, 255, 0.9),
+                    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+                    inset -2px -2px 4px rgba(180, 185, 205, 0.15);
+        margin-top: 10px;
+    }
     .clay-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0 8px;
-        margin-top: 10px;
     }
     .clay-table th {
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
         color: #48404b;
-        padding: 6px 14px;
+        padding: 6px 12px;
         text-align: left;
     }
     .clay-table tr td {
-        background-color: #fffdf7;
+        background-color: #f1f2fa;
         padding: 10px 14px;
         font-size: 13px;
         font-weight: 600;
         color: #383139;
-        box-shadow: 4px 4px 10px rgba(185, 190, 210, 0.25),
-                    -4px -4px 10px rgba(255, 255, 255, 0.8),
-                    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
-                    inset -2px -2px 4px rgba(185, 190, 210, 0.15);
+        box-shadow: 3px 3px 8px rgba(185, 190, 210, 0.25),
+                    -3px -3px 8px rgba(255, 255, 255, 0.8),
+                    inset 1px 1px 3px rgba(255, 255, 255, 0.8),
+                    inset -1px -1px 3px rgba(185, 190, 210, 0.15);
     }
     .clay-table tr td:first-child {
-        border-radius: 16px 0 0 16px;
+        border-radius: 14px 0 0 14px;
     }
     .clay-table tr td:last-child {
-        border-radius: 0 16px 16px 0;
+        border-radius: 0 14px 14px 0;
+    }
+
+    /* Fix Dropdown Popovers (Image 2 Fix - Never Black) */
+    div[data-baseweb="popover"],
+    div[data-baseweb="menu"],
+    ul[role="listbox"],
+    div[data-baseweb="popover"] > div {
+        background-color: #fffdf7 !important;
+        border-radius: 20px !important;
+        box-shadow: 8px 8px 24px rgba(175, 180, 205, 0.45),
+                    -8px -8px 24px rgba(255, 255, 255, 0.95),
+                    inset 2px 2px 4px rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid #ded0f9 !important;
+        padding: 6px !important;
+    }
+    li[role="option"] {
+        background-color: #fffdf7 !important;
+        color: #383139 !important;
+        border-radius: 12px !important;
+        font-family: 'Instrument Sans', sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        padding: 10px 14px !important;
+        transition: all 0.15s ease !important;
+    }
+    li[role="option"]:hover,
+    li[role="option"][aria-selected="true"] {
+        background-color: #ded0f9 !important;
+        color: #383139 !important;
     }
 
     /* Sidebar Overrides for Absolute Clarity & Legibility */
@@ -358,7 +388,7 @@ st.markdown("""
         border-radius: 999px;
         border: none;
         padding: 8px 24px;
-        font-size: 14px;
+        font-size: 13.5px;
         font-weight: 700;
         color: #48404b;
         box-shadow: 5px 5px 12px rgba(175, 180, 205, 0.35),
@@ -417,7 +447,7 @@ st.markdown("""
         <h1>Global Supply Chain Bottleneck Predictor</h1>
         <p>Tactile intelligence dispatch engine analyzing dwell waveforms, yard saturation, and customs turbulence to neutralize logistics bottlenecks before regional supply chains collapse.</p>
     </div>
-    <div style="background-color: #fffdf7; border-radius: 999px; padding: 12px 24px; font-weight: 800; font-size: 13px; box-shadow: 4px 4px 10px rgba(190,140,165,0.4), -4px -4px 10px rgba(255,255,255,0.8), inset 2px 2px 4px rgba(255,255,255,0.8), inset -2px -2px 4px rgba(190,140,165,0.2);">
+    <div style="background-color: #fffdf7; border-radius: 999px; padding: 12px 24px; font-weight: 800; font-size: 13px; color: #383139; box-shadow: 4px 4px 10px rgba(190,140,165,0.4), -4px -4px 10px rgba(255,255,255,0.8), inset 2px 2px 4px rgba(255,255,255,0.8), inset -2px -2px 4px rgba(190,140,165,0.2);">
         ● Telemetry Online
     </div>
 </div>
@@ -496,7 +526,7 @@ weather = st.sidebar.slider("Weather Severity (0-10)", 0.0, 10.0, float(val_weat
 labor = st.sidebar.slider("Labor Deficit Ratio", 0.0, 0.5, float(val_labor), 0.005)
 
 # ---------------------------------------------------------------------
-# 5. PREDICTION COMPUTATION (STRICT & CLEAN)
+# 5. PREDICTION COMPUTATION
 # ---------------------------------------------------------------------
 if classifier is None:
     st.error("⚠️ Model artifacts not found. Please verify xgboost_delay_model.pkl exists.")
@@ -564,7 +594,7 @@ with f1:
     st.markdown(f'''
     <div class="clay-cushion cool">
         <div class="cushion-label">Active Corridor</div>
-        <div class="cushion-val" style="font-size:19px;">{origin_short} ➔ {dest_short}</div>
+        <div class="cushion-val" style="font-size:18px;">{origin_short} ➔ {dest_short}</div>
     </div>
     ''', unsafe_allow_html=True)
 
@@ -572,7 +602,7 @@ with f2:
     st.markdown(f'''
     <div class="clay-cushion lavender">
         <div class="cushion-label">Carrier & Priority</div>
-        <div class="cushion-val" style="font-size:19px;">{carrier} • {priority[:4]}</div>
+        <div class="cushion-val" style="font-size:18px;">{carrier} • {priority[:4]}</div>
     </div>
     ''', unsafe_allow_html=True)
 
@@ -582,7 +612,7 @@ with f3:
     st.markdown(f'''
     <div class="clay-cushion {status_cushion}">
         <div class="cushion-label">Sensor Telemetry</div>
-        <div class="cushion-val" style="font-size:19px;">{status_text}</div>
+        <div class="cushion-val" style="font-size:18px;">{status_text}</div>
     </div>
     ''', unsafe_allow_html=True)
 
@@ -668,7 +698,7 @@ with tab_triage:
             </div>
             """, unsafe_allow_html=True)
 
-        # Tactical Action Directive (Lavender Pillow)
+        # Tactical Action Directive
         if pred_label == "CRITICAL_DELAY":
             st.markdown("""
             <div class="tactical-pillow" style="background-color: #f6a3ca;">
@@ -697,17 +727,18 @@ with tab_triage:
             </div>
             """, unsafe_allow_html=True)
 
-        # Telemetry Risk Drivers Table (HTML Clay Table for 100% Contrast)
-        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-top:8px;'>🔍 Key Telemetry Drivers</h4>", unsafe_allow_html=True)
+        # Telemetry Risk Drivers Table (HTML Escaped to prevent DOM corruption)
+        st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139; margin-top:14px; margin-bottom:4px;'>🔍 Key Telemetry Drivers</h4>", unsafe_allow_html=True)
         drivers = [
-            ("Container Dwell Time", f"{dwell:.1f} hrs", "< 24 hrs", "🔴 Critical" if dwell > 35 else ("🟡 Elevated" if dwell > 24 else "🟢 Normal")),
-            ("Yard Saturation", f"{capacity:.1f}%", "< 80%", "🔴 Overflow" if capacity > 100 else ("🟡 High" if capacity > 80 else "🟢 Optimal")),
-            ("Customs Hold", f"{customs:.1f} hrs", "< 4 hrs", "🔴 Backlogged" if customs > 8 else ("🟡 Queued" if customs > 4 else "🟢 Cleared")),
-            ("Berth Crane Velocity", f"{throughput:.0f} TEU/h", "> 180 TEU/h", "🔴 Choked" if throughput < 120 else ("🟡 Moderate" if throughput < 180 else "🟢 Swift")),
-            ("Weather Severity", f"{weather:.1f} / 10", "< 3.0", "🔴 Severe Gale" if weather > 4.5 else ("🟡 Adverse" if weather > 2.5 else "🟢 Calm"))
+            ("Container Dwell Time", f"{dwell:.1f} hrs", "&lt; 24 hrs", "🔴 Critical" if dwell > 35 else ("🟡 Elevated" if dwell > 24 else "🟢 Normal")),
+            ("Yard Saturation", f"{capacity:.1f}%", "&lt; 80%", "🔴 Overflow" if capacity > 100 else ("🟡 High" if capacity > 80 else "🟢 Optimal")),
+            ("Customs Hold", f"{customs:.1f} hrs", "&lt; 4 hrs", "🔴 Backlogged" if customs > 8 else ("🟡 Queued" if customs > 4 else "🟢 Cleared")),
+            ("Berth Crane Velocity", f"{throughput:.0f} TEU/h", "&gt; 180 TEU/h", "🔴 Choked" if throughput < 120 else ("🟡 Moderate" if throughput < 180 else "🟢 Swift")),
+            ("Weather Severity", f"{weather:.1f} / 10", "&lt; 3.0", "🔴 Severe Gale" if weather > 4.5 else ("🟡 Adverse" if weather > 2.5 else "🟢 Calm"))
         ]
         
         table_html = """
+        <div class="table-tray">
         <table class="clay-table">
             <thead>
                 <tr>
@@ -724,11 +755,11 @@ with tab_triage:
                 <tr>
                     <td><strong>{factor}</strong></td>
                     <td>{obs}</td>
-                    <td style="color:#64748B;">{bench}</td>
+                    <td style="color:#48404b;">{bench}</td>
                     <td>{status}</td>
                 </tr>
             """
-        table_html += "</tbody></table>"
+        table_html += "</tbody></table></div>"
         st.markdown(table_html, unsafe_allow_html=True)
 
     with col_t2:
@@ -737,11 +768,11 @@ with tab_triage:
         
         gauge_fig = go.Figure(go.Indicator(
             mode="gauge+number",
-            value=risk_score,
+            value=float(risk_score),
             number={'suffix': "%", 'font': {'size': 38, 'family': 'Instrument Sans', 'color': '#383139'}},
             title={'text': "Composite Delay Risk", 'font': {'size': 13, 'color': '#48404b', 'family': 'Instrument Sans'}},
             gauge={
-                'axis': {'range': [0, 100], 'tickwidth': 1.5, 'tickcolor': "#48404b", 'tickfont': {'family': 'Instrument Sans', 'size': 11}},
+                'axis': {'range': [0, 100], 'tickwidth': 1.5, 'tickcolor': "#48404b", 'tickfont': {'family': 'Instrument Sans', 'size': 11, 'color': '#48404b'}},
                 'bar': {'color': "#383139", 'thickness': 0.28},
                 'bgcolor': "#fffdf7",
                 'borderwidth': 0,
@@ -753,7 +784,7 @@ with tab_triage:
                 'threshold': {
                     'line': {'color': "#383139", 'width': 3.5},
                     'thickness': 0.85,
-                    'value': risk_score
+                    'value': float(risk_score)
                 }
             }
         ))
@@ -800,7 +831,7 @@ with tab_visuals:
     col_v1, col_v2 = st.columns(2, gap="large")
     
     with col_v1:
-        # VISUALIZATION 3: 6-Axis Telemetry Health Radar (Clay Lavender & Mint)
+        # VISUALIZATION 3: 6-Axis Telemetry Health Radar (Plotly Bug Fixed)
         st.markdown("<h4 style='font-size:16px; font-weight:800; color:#383139;'>🕸️ 6-Axis Telemetry Health Footprint</h4>", unsafe_allow_html=True)
         st.caption("Molded polygon comparison showing current shipment metrics against optimal baseline envelopes.")
         
@@ -844,7 +875,7 @@ with tab_visuals:
         radar_fig.update_layout(
             polar=dict(
                 radialaxis=dict(visible=True, range=[0, 100], color="#48404b", gridcolor="#e2e8f0"),
-                angularaxis=dict(color="#383139", gridcolor="#e2e8f0", font=dict(family="Instrument Sans", size=12))
+                angularaxis=dict(color="#383139", gridcolor="#e2e8f0", tickfont=dict(family="Instrument Sans", size=11, color="#383139"))
             ),
             showlegend=True,
             legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5, font=dict(family="Instrument Sans", color="#383139")),
