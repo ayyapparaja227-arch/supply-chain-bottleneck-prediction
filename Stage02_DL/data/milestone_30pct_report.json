@@ -1,0 +1,74 @@
+{
+  "milestone": "30% Complete",
+  "phase": "Role 01: Logistics Graph Topology & Edge Extraction",
+  "total_network_edges": 11,
+  "total_active_nodes": 6,
+  "network_topology": {
+    "DC_US_MW_JOLIET": {
+      "mean_dwell_hours": 8.4,
+      "neighbor_mean_dwell_hours": 18.5,
+      "links_degree": 2,
+      "connected_neighbors": [
+        "PORT_CN_SHA",
+        "PORT_US_OAK"
+      ]
+    },
+    "PORT_CN_SHA": {
+      "mean_dwell_hours": 17.8,
+      "neighbor_mean_dwell_hours": 20.2,
+      "links_degree": 5,
+      "connected_neighbors": [
+        "DC_US_MW_JOLIET",
+        "PORT_US_LAX",
+        "PORT_US_LGB",
+        "PORT_US_OAK",
+        "RAIL_US_CHI_BNSF"
+      ]
+    },
+    "PORT_US_LAX": {
+      "mean_dwell_hours": 31.1,
+      "neighbor_mean_dwell_hours": 20.2,
+      "links_degree": 3,
+      "connected_neighbors": [
+        "PORT_CN_SHA",
+        "PORT_US_LGB",
+        "PORT_US_OAK"
+      ]
+    },
+    "PORT_US_LGB": {
+      "mean_dwell_hours": 23.8,
+      "neighbor_mean_dwell_hours": 24.5,
+      "links_degree": 2,
+      "connected_neighbors": [
+        "PORT_CN_SHA",
+        "PORT_US_LAX"
+      ]
+    },
+    "PORT_US_OAK": {
+      "mean_dwell_hours": 19.1,
+      "neighbor_mean_dwell_hours": 19.0,
+      "links_degree": 4,
+      "connected_neighbors": [
+        "DC_US_MW_JOLIET",
+        "PORT_CN_SHA",
+        "PORT_US_LAX",
+        "RAIL_US_CHI_BNSF"
+      ]
+    },
+    "RAIL_US_CHI_BNSF": {
+      "mean_dwell_hours": 18.6,
+      "neighbor_mean_dwell_hours": 18.5,
+      "links_degree": 2,
+      "connected_neighbors": [
+        "PORT_CN_SHA",
+        "PORT_US_OAK"
+      ]
+    }
+  },
+  "message_passing_type": "1-hop mean neighbor aggregation",
+  "artifacts_generated": [
+    "logistics_edges.csv",
+    "graph_node_features.csv"
+  ],
+  "status": "APPROVED \u2014 READY FOR 40% MILESTONE (ROLE 01: 12-HOUR SLIDING WINDOW SEQUENCE TENSORS)"
+}
